@@ -25,14 +25,10 @@ SECRET_KEY = 'django-insecure--gl7pt+fx8)-h6sbgeo#iz_6uvcni)u+c+*xa*@os&9e@fa+gn
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS =  ['localhost', '127.0.0.1', '0.0.0.0']
+ALLOWED_HOSTS = ['*']
 
 #CORS ALLOWED HOST
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:5173',
-    'http://127.0.0.1:5173',
-    '*'
-]
+CORS_ALLOW_ALL_ORIGINS = True
 
 
 # Application definition
@@ -125,3 +121,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
