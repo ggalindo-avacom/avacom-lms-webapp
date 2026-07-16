@@ -1,0 +1,40 @@
+.home-access {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1.27;
+  min-height: 100vh;
+  padding: 48px;
+  background: #fffdfd;
+}
+
+.home-access__panel {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  width: min(100%, 400px);
+}
+
+.home-access header { display: flex; flex-direction: column; gap: 8px; }
+.home-access header h2, .home-access header p { margin: 0; }
+.home-access header h2 { color: #1e1b1b; font-size: 1.6rem; }
+.home-access header p { color: #6e6868; font-size: .94rem; }
+
+.home-access__primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 52px;
+  border: 0;
+  border-radius: 999px;
+  background: #ed252b;
+  box-shadow: 0 4px 8px rgb(237 37 43 / 20%);
+  color: #fff;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.home-access__primary span { font-size: 1.5rem; font-weight: 400; }
+.home-access__signup { margin: -5px 0 0; color: #756f6f; font-size: .85rem; text-align: center; }
+.home-access__signup button { padding: 0; border: 0; background: none; color: #ed252b; font-weight: 700; cursor: pointer; }

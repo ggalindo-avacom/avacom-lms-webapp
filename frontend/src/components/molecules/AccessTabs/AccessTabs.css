@@ -1,0 +1,26 @@
+.access-tabs {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid #d4cece;
+  border-radius: 999px;
+}
+
+.access-tabs button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  gap: 9px;
+  min-height: 48px;
+  padding: 0 14px;
+  border: 0;
+  background: transparent;
+  color: #4d4949;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.access-tabs button + button { border-left: 1px solid #d4cece; }
+.access-tabs button.is-active { background: #ffdada; color: #9d151a; }
+.access-tabs button span { font-size: 1.2rem; }
