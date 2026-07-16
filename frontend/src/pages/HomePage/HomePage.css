@@ -1,0 +1,42 @@
+.home-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 24px;
+  background: var(--color-surface);
+}
+
+.home-page__card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: min(100%, 620px);
+  padding: 40px;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: var(--shadow-card);
+  text-align: center;
+}
+
+.home-page__card h1,
+.home-page__card p {
+  margin: 0;
+}
+
+.home-page__card p {
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+.home-page__eyebrow {
+  color: var(--color-primary) !important;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.home-page__action {
+  align-self: center;
+  width: min(100%, 240px);
+  margin-top: 12px;
+}
