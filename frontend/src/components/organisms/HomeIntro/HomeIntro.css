@@ -29,9 +29,10 @@
   max-width: 540px;
   margin: 0;
   color: #111;
-  font-size: clamp(2.3rem, 4vw, 4rem);
-  line-height: 1.08;
-  letter-spacing: -.045em;
+  font-weight: 700;
+  font-size: clamp(30px, 3.2vw, 44px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
 }
 
 .home-intro__content p {

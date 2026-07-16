@@ -24,3 +24,9 @@
 .access-tabs button + button { border-left: 1px solid #d4cece; }
 .access-tabs button.is-active { background: #ffdada; color: #9d151a; }
 .access-tabs button span { font-size: 1.2rem; }
+
+.access-tabs__qr-icon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
