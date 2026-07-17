@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'login.apps.LoginConfig',
     'apps.courses.apps.CoursesConfig',
+    'apps.network.apps.NetworkConfig',
 ]
 
 MEDIA_URL = 'media/'
