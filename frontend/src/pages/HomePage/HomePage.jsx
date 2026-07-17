@@ -8,7 +8,7 @@ function HomePage() {
 
   return (
     <main className="home-page">
-      <HomeIntro />
+      <HomeIntro hostNetwork={hostNetwork} />
       <HomeAccess hostNetwork={hostNetwork} />
     </main>
   )
