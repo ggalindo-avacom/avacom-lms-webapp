@@ -7,7 +7,7 @@ import QrAccess from '../../molecules/QrAccess/QrAccess'
 import { useLogin } from '../../../hooks/useLogin'
 import './HomeAccess.css'
 
-function HomeAccess() {
+function HomeAccess({ hostNetwork }) {
   const [activeTab, setActiveTab] = useState('qr')
   const navigate = useNavigate()
   const { authenticate, error, isLoading } = useLogin()
@@ -30,7 +30,11 @@ function HomeAccess() {
         <AccessTabs activeTab={activeTab} onChange={setActiveTab} />
         {activeTab === 'qr' ? (
           <>
-            <QrAccess />
+            <QrAccess
+              accessUrl={hostNetwork.qrAccessUrl}
+              error={hostNetwork.error}
+              isLoading={hostNetwork.isLoading}
+            />
             <button className="home-access__primary" type="button">
               Ingresar <span aria-hidden="true">→</span>
             </button>
