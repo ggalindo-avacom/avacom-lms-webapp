@@ -50,9 +50,9 @@ Node.js must be version 20 or newer.
 1. Copy or extract the complete project folder to a local writable directory. Avoid running it directly from a ZIP file, OneDrive placeholder, or network share.
 2. Double-click `AVACOM-LMS-Setup.exe`. The executable must remain next to `AVACOM-LMS-Setup.bat` and the `backend` and `frontend` folders.
 3. Keep the console open until it reports `INSTALLATION COMPLETED`.
-4. Review `backend\.env`. Replace the sample Wi-Fi password and encryption values as appropriate. For an open network, use an empty password and `nopass`.
-5. Double-click `networkrules.bat` once and approve the administrator/UAC prompt. It opens inbound TCP ports `8000` and `5173`.
-6. Double-click `run.bat`.
+4. Double-click `networkrules.bat` once and approve the administrator/UAC prompt. It opens inbound TCP ports `8000` and `5173`.
+5. Double-click `run.bat`.
+6. Register the available Wi-Fi networks through the API described below.
 
 The launcher opens two console windows:
 
@@ -78,7 +78,49 @@ The installer:
 7. installs frontend dependencies using `npm ci` when a lockfile is available;
 8. creates a production build to validate the frontend.
 
-The installer is safe to run again. Existing environment settings are preserved.
+The installer is safe to run again. Existing environment settings and registered
+Wi-Fi networks are preserved.
+
+## Register Wi-Fi networks
+
+Wi-Fi credentials are stored in the database and are no longer read from `.env`.
+For the current proof of concept, this endpoint does not require authentication:
+
+```http
+POST /api/network/wifi-networks/
+Content-Type: application/json
+```
+
+Secured network:
+
+```json
+{
+  "name": "Makers",
+  "wifipassword": "network-password",
+  "type": "WPA"
+}
+```
+
+Open network:
+
+```json
+{
+  "name": "Makers Guest",
+  "wifipassword": "",
+  "type": "nopass"
+}
+```
+
+Supported input types are `WPA`, `WPA2`, `WPA3`, `WEP`, `nopass`, and `none`.
+WPA variants are stored using the canonical QR type `WPA`.
+
+The same endpoint supports `GET` to list registered networks.
+The public `GET /api/network/ip-address/` detects the host's current SSID,
+selects the matching database record, and returns the Wi-Fi QR payload to the
+frontend.
+
+> Security note: authentication and role-based authorization must be restored
+> before this proof of concept is deployed outside a controlled test network.
 
 ### Windows SmartScreen
 

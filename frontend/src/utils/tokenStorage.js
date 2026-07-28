@@ -7,7 +7,11 @@ export function saveSession({ access, refresh }) {
 }
 
 export function getAccessToken() {
-  return localStorage.getItem(ACCESS_TOKEN_KEY)
+  try {
+    return localStorage.getItem(ACCESS_TOKEN_KEY)
+  } catch {
+    return null
+  }
 }
 
 export function hasSession() {

@@ -1,0 +1,86 @@
+.wifi-network-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: min(100%, 390px);
+  padding: 20px;
+  border: 1px solid #ded8d8;
+  border-radius: 14px;
+  background: rgb(255 255 255 / 72%);
+}
+
+.wifi-network-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: var(--color-text);
+  font-size: .9rem;
+  font-weight: 700;
+}
+
+.wifi-network-form__field select {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 14px;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--color-text);
+  font: inherit;
+}
+
+.wifi-network-form__field select:focus {
+  border-color: #e5262b;
+  box-shadow: 0 0 0 3px rgb(229 38 43 / 16%);
+  outline: 0;
+}
+
+.wifi-network-form__message {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: .82rem;
+  line-height: 1.4;
+}
+
+.wifi-network-form__message--error {
+  background: #fef3f2;
+  color: #b42318;
+}
+
+.wifi-network-form__message--success {
+  background: #ecfdf3;
+  color: #027a48;
+}
+
+.wifi-network-form__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.wifi-network-form__actions button {
+  min-height: 42px;
+  padding: 0 17px;
+  border-radius: 999px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.wifi-network-form__cancel {
+  border: 1px solid #ccc5c5;
+  background: transparent;
+  color: #514b4b;
+}
+
+.wifi-network-form__save {
+  border: 1px solid #e5262b;
+  background: #e5262b;
+  color: #fff;
+}
+
+.wifi-network-form__save:disabled {
+  cursor: not-allowed;
+  opacity: .65;
+}

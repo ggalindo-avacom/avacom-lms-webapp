@@ -33,6 +33,23 @@ export async function getHostNetwork(options = {}) {
   return responseBody.data
 }
 
+export async function createWifiNetwork(wifiNetwork) {
+  const responseBody = await apiRequest('/network/wifi-networks/', {
+    method: 'POST',
+    body: JSON.stringify(wifiNetwork),
+  })
+
+  if (!responseBody?.data || typeof responseBody.data !== 'object') {
+    throw new ApiError(
+      'La API respondió sin los datos de la red creada.',
+      502,
+      responseBody,
+    )
+  }
+
+  return responseBody.data
+}
+
 export function buildQrAccessUrl(networkData) {
   const frontendUrl = new URL(networkData.frontend_address)
   frontendUrl.searchParams.set('backend', networkData.query)

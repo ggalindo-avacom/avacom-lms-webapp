@@ -66,6 +66,28 @@ export class ApiError extends Error {
   }
 }
 
+function getErrorMessage(data) {
+  if (typeof data?.detail === 'string') {
+    return data.detail
+  }
+
+  if (typeof data?.error?.message === 'string') {
+    return data.error.message
+  }
+
+  if (data && typeof data === 'object') {
+    const firstFieldError = Object.values(data)
+      .flat()
+      .find((value) => typeof value === 'string')
+
+    if (firstFieldError) {
+      return firstFieldError
+    }
+  }
+
+  return 'No fue posible completar la solicitud. Intenta nuevamente.'
+}
+
 export async function apiRequest(endpoint, options = {}) {
   const apiUrl = getApiUrl().replace(/\/$/, '')
   const normalizedEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`
@@ -80,8 +102,7 @@ export async function apiRequest(endpoint, options = {}) {
   const data = await response.json().catch(() => null)
 
   if (!response.ok) {
-    const message =
-      data?.detail || 'No fue posible completar la solicitud. Intenta nuevamente.'
+    const message = getErrorMessage(data)
     throw new ApiError(message, response.status, data)
   }
 

@@ -4,8 +4,7 @@ import re
 import socket
 import subprocess
 
-from django.conf import settings
-
+from apps.network.models import WifiNetwork
 from apps.network.services.genqr import generate_wifi_qr_payload, normalize_encryption
 
 
@@ -27,20 +26,30 @@ class LocalNetworkService:
 
     def get_wifi_information(self) -> dict[str, str | None]:
         ssid = self.get_current_wifi_name()
-        password = settings.WIFI_PASSWORD
-        encryption = normalize_encryption(settings.WIFI_ENCRYPTION)
-        qr_payload = None
+        wifi_network = (
+            WifiNetwork.objects.filter(name=ssid).first()
+            if ssid
+            else None
+        )
 
-        if ssid:
-            qr_payload = generate_wifi_qr_payload(
-                ssid=ssid,
-                password=password,
-                encryption=encryption,
-            )
+        if not wifi_network:
+            return {
+                "ssid": ssid,
+                "password": None,
+                "encryption": None,
+                "qr_payload": None,
+            }
+
+        encryption = normalize_encryption(wifi_network.type)
+        qr_payload = generate_wifi_qr_payload(
+            ssid=wifi_network.name,
+            password=wifi_network.wifipassword,
+            encryption=encryption,
+        )
 
         return {
-            "ssid": ssid,
-            "password": password,
+            "ssid": wifi_network.name,
+            "password": wifi_network.wifipassword,
             "encryption": encryption,
             "qr_payload": qr_payload,
         }

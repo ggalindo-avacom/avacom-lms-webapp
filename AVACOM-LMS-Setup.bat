@@ -128,7 +128,7 @@ if not exist "backend\.env" (
     if exist "backend\.env.example" (
         copy /Y "backend\.env.example" "backend\.env" >nul
         echo Created backend\.env from backend\.env.example.
-        echo IMPORTANT: Review backend\.env before sharing Wi-Fi access.
+        echo Wi-Fi networks are configured through the network API.
     ) else (
         echo [WARNING] backend\.env.example was not found. No .env file was created.
     )
@@ -184,9 +184,9 @@ echo                  INSTALLATION COMPLETED
 echo ============================================================
 echo.
 echo Next steps:
-echo   1. Review backend\.env.
-echo   2. Run networkrules.bat once and approve the UAC prompt.
-echo   3. Run run.bat to start Django and Vite.
+echo   1. Run networkrules.bat once and approve the UAC prompt.
+echo   2. Run run.bat to start Django and Vite.
+echo   3. Register Wi-Fi networks through /api/network/wifi-networks/.
 echo.
 echo Local frontend: http://localhost:5173
 echo Local backend:  http://localhost:8000

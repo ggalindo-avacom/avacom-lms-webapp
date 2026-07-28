@@ -1,7 +1,7 @@
 import QrCode from '../../atoms/QrCode/QrCode'
 import './QrAccess.css'
 
-function QrAccess({ accessUrl, error, isLoading }) {
+function QrAccess({ accessUrl = '', error = '', isLoading = false }) {
   return (
     <div className="qr-access">
       <QrCode
@@ -15,7 +15,9 @@ function QrAccess({ accessUrl, error, isLoading }) {
         AVACOM para iniciar sesión.
       </p>
       {error ? (
-        <small className="qr-access__error">No se pudo conectar con el backend.</small>
+        <small className="qr-access__error">
+          No se pudo generar el acceso: {error}
+        </small>
       ) : (
         <small>
           <i aria-hidden="true" />
