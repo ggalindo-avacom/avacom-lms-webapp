@@ -26,71 +26,57 @@ if not exist "frontend\package.json" (
     goto :failed
 )
 
-echo [1/9] Checking Python 3.12 or newer...
-set "PYTHON_CMD="
-
-where py.exe >nul 2>&1
-if not errorlevel 1 (
-    py -3 -c "import sys; raise SystemExit(0 if sys.version_info >= (3, 12) else 1)" >nul 2>&1
-    if not errorlevel 1 set "PYTHON_CMD=py -3"
+if not exist "tools\ensure-prerequisites.ps1" (
+    echo [ERROR] tools\ensure-prerequisites.ps1 was not found.
+    goto :failed
 )
+
+echo [1/9] Checking Python 3.12+ and Node.js 22+ ^(auto-install if missing^)...
+set "PREREQ_FILE=%TEMP%\avacom-lms-prereqs.cmd"
+if exist "%PREREQ_FILE%" del /f /q "%PREREQ_FILE%" >nul 2>&1
+
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "tools\ensure-prerequisites.ps1" -OutputFile "%PREREQ_FILE%"
+if errorlevel 1 (
+    echo [ERROR] Python and Node.js could not be verified or installed.
+    goto :failed
+)
+
+if not exist "%PREREQ_FILE%" (
+    echo [ERROR] The prerequisite check did not report the tool locations.
+    goto :failed
+)
+
+rem Absolute paths written by ensure-prerequisites.ps1: PYTHON_CMD, NODE_EXE
+rem and NPM_CMD. They work even when PATH does not yet know a fresh install.
+call "%PREREQ_FILE%"
+del /f /q "%PREREQ_FILE%" >nul 2>&1
 
 if not defined PYTHON_CMD (
-    where python.exe >nul 2>&1
-    if not errorlevel 1 (
-        python -c "import sys; raise SystemExit(0 if sys.version_info >= (3, 12) else 1)" >nul 2>&1
-        if not errorlevel 1 set "PYTHON_CMD=python"
-    )
-)
-
-if not defined PYTHON_CMD (
-    echo [ERROR] Python 3.12 or newer is required and was not found in PATH.
-    echo Download the 64-bit installer from https://www.python.org/downloads/windows/
-    echo During installation, enable "Add python.exe to PATH".
+    echo [ERROR] The Python location was not reported.
     goto :failed
 )
-
-%PYTHON_CMD% --version
-
-echo.
-echo [2/9] Checking the Python venv module...
-%PYTHON_CMD% -c "import venv" >nul 2>&1
-if errorlevel 1 (
-    echo [ERROR] The Python venv module is unavailable.
-    echo Repair or reinstall Python with pip and the standard library enabled.
+if not defined NPM_CMD (
+    echo [ERROR] The npm location was not reported.
     goto :failed
 )
 
 echo.
-echo [3/9] Checking Node.js 20 or newer and npm...
-where node.exe >nul 2>&1
+echo [2/9] Confirming the detected tools run correctly...
+"%PYTHON_CMD%" --version
 if errorlevel 1 (
-    echo [ERROR] Node.js was not found in PATH.
-    echo Install the 64-bit Node.js 22 LTS release from https://nodejs.org/
+    echo [ERROR] Python was found but could not run.
     goto :failed
 )
 
-for /f "tokens=1 delims=." %%V in ('node -p "process.versions.node"') do set "NODE_MAJOR=%%V"
-if not defined NODE_MAJOR (
-    echo [ERROR] The Node.js version could not be detected.
-    goto :failed
-)
-
-if !NODE_MAJOR! LSS 20 (
-    echo [ERROR] Node.js 20 or newer is required. Installed version:
-    node --version
-    echo Install Node.js 22 LTS from https://nodejs.org/
-    goto :failed
-)
-
-where npm.cmd >nul 2>&1
+echo.
+echo [3/9] Confirming Node.js and npm...
+"%NODE_EXE%" --version
 if errorlevel 1 (
-    echo [ERROR] npm was not found in PATH. Repair the Node.js installation.
+    echo [ERROR] Node.js was found but could not run.
     goto :failed
 )
 
-node --version
-call npm.cmd --version
+call "%NPM_CMD%" --version
 if errorlevel 1 (
     echo [ERROR] npm was found but could not run.
     goto :failed
@@ -99,7 +85,7 @@ if errorlevel 1 (
 echo.
 echo [4/9] Creating backend\venv...
 if not exist "backend\venv\Scripts\python.exe" (
-    %PYTHON_CMD% -m venv "backend\venv"
+    "%PYTHON_CMD%" -m venv "backend\venv"
     if errorlevel 1 (
         echo [ERROR] Could not create backend\venv.
         goto :failed
@@ -158,9 +144,9 @@ echo.
 echo [8/9] Installing frontend dependencies...
 pushd "frontend"
 if exist "package-lock.json" (
-    call npm.cmd ci
+    call "%NPM_CMD%" ci
 ) else (
-    call npm.cmd install
+    call "%NPM_CMD%" install
 )
 if errorlevel 1 (
     popd
@@ -170,7 +156,7 @@ if errorlevel 1 (
 
 echo.
 echo [9/9] Building the frontend...
-call npm.cmd run build
+call "%NPM_CMD%" run build
 if errorlevel 1 (
     popd
     echo [ERROR] The frontend production build failed.
