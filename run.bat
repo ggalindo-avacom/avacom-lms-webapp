@@ -57,20 +57,22 @@ if not exist "frontend\node_modules" (
     exit /b 1
 )
 
-echo Iniciando backend en http://0.0.0.0:8000 ...
-start "LMS Backend - Django" /D "%~dp0backend" cmd.exe /k "call venv\Scripts\activate.bat && python manage.py runserver 0.0.0.0:8000"
-
-if errorlevel 1 (
-    echo [ERROR] No fue posible abrir la consola del backend.
+if not exist "tools\lms-services.ps1" (
+    echo [ERROR] No se encontro tools\lms-services.ps1.
+    echo.
     pause
     exit /b 1
 )
 
-echo Iniciando frontend en http://0.0.0.0:5173 ...
-start "LMS Frontend - Vite" /D "%~dp0frontend" cmd.exe /k "npm.cmd run dev"
+title LMS - CONTROL
+echo Iniciando backend en http://0.0.0.0:8000 y frontend en http://0.0.0.0:5173 ...
+echo.
 
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "tools\lms-services.ps1" -Action start
 if errorlevel 1 (
-    echo [ERROR] No fue posible abrir la consola del frontend.
+    echo.
+    echo [ERROR] No fue posible iniciar los servicios.
+    echo.
     pause
     exit /b 1
 )
@@ -83,7 +85,16 @@ echo.
 echo Backend:  http://localhost:8000
 echo Frontend: http://localhost:5173
 echo.
-echo Para detener los servicios, cierra sus respectivas ventanas.
+echo ==================================================
+echo   PARA DETENER TODO, CUALQUIERA DE LAS DOS OPCIONES:
 echo.
-timeout /t 4 >nul
-exit /b 0
+echo     1. Cierra ESTA ventana con la X de la esquina.
+echo     2. Ejecuta stop.bat con doble toque.
+echo ==================================================
+echo.
+echo Esta ventana debe permanecer abierta mientras el LMS este en uso.
+echo.
+
+:control
+timeout /t 3600 /nobreak >nul
+goto control

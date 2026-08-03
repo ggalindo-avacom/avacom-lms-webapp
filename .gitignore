@@ -64,3 +64,8 @@ pnpm-debug.log*
 
 # Vite
 dist/
+
+# ==========================
+# Runtime de run.bat / stop.bat
+# ==========================
+.lms-run/
