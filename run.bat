@@ -77,13 +77,16 @@ if errorlevel 1 (
     exit /b 1
 )
 
+set "FRONTEND_URL=http://localhost:5173/"
+if exist ".lms-run\url.txt" set /p FRONTEND_URL=<".lms-run\url.txt"
+
 echo.
 echo ==================================================
 echo          SERVICIOS INICIADOS EN DOS VENTANAS
 echo ==================================================
 echo.
 echo Backend:  http://localhost:8000
-echo Frontend: http://localhost:5173
+echo Frontend: %FRONTEND_URL%
 echo.
 echo ==================================================
 echo   PARA DETENER TODO, CUALQUIERA DE LAS DOS OPCIONES:
