@@ -41,7 +41,7 @@ $services = [ordered]@{
         Port        = 5173
         WorkingDir  = Join-Path $root 'frontend'
         Command     = 'npm.cmd run dev'
-        CommandLine = 'npm(\.cmd)?\s+run\s+dev'
+        CommandLine = 'run\s+dev'
     }
 }
 
@@ -67,7 +67,7 @@ function Get-ProcessRecord {
 # lanza los servicios, o un ejecutable que vive dentro de esta carpeta. Asi un
 # Node o un Python ajeno de la maquina nunca se ve afectado.
 function Test-BelongsToProject {
-    param($ProcessRecord, [hashtable]$Service)
+    param($ProcessRecord)
 
     if (-not $ProcessRecord) {
         return $false
@@ -81,10 +81,6 @@ function Test-BelongsToProject {
     }
 
     if ($commandLine -and $commandLine -like "*$root*") {
-        return $true
-    }
-
-    if ($commandLine -and $commandLine -match $Service.CommandLine) {
         return $true
     }
 
@@ -131,22 +127,25 @@ function Get-ServiceTargets {
 
     $targets = New-Object System.Collections.Generic.List[int]
 
-    # 1) El PID que se guardo al arrancar: identifica la consola exacta.
+    # 1) El PID que se guardo al arrancar: identifica la consola exacta. Basta
+    #    con que siga siendo la consola del servicio (protege de un PID reciclado).
     if (Test-Path -LiteralPath $Service.PidFile) {
         $storedId = 0
         if ([int]::TryParse((Get-Content -LiteralPath $Service.PidFile -Raw).Trim(), [ref]$storedId)) {
             $record = Get-ProcessRecord -ProcessId $storedId
-            if ($record -and (Test-BelongsToProject -ProcessRecord $record -Service $Service)) {
+            if ($record -and $record.Name -eq 'cmd.exe' -and
+                ([string]$record.CommandLine -match $Service.CommandLine -or (Test-BelongsToProject -ProcessRecord $record))) {
                 $targets.Add($storedId)
             }
         }
     }
 
-    # 2) Quien tenga tomado el puerto del servicio.
+    # 2) Quien tenga tomado el puerto del servicio, solo si el ejecutable o su
+    #    linea de comandos viven dentro de esta carpeta.
     $connections = Get-NetTCPConnection -LocalPort $Service.Port -State Listen -ErrorAction SilentlyContinue
     foreach ($owner in @($connections.OwningProcess | Sort-Object -Unique)) {
         $record = Get-ProcessRecord -ProcessId ([int]$owner)
-        if ($record -and (Test-BelongsToProject -ProcessRecord $record -Service $Service)) {
+        if ($record -and (Test-BelongsToProject -ProcessRecord $record)) {
             $targets.Add([int]$owner)
         }
     }
