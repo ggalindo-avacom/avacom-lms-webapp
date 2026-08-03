@@ -12,7 +12,7 @@ const FOCUSABLE_SELECTOR = [
   '[tabindex]:not([tabindex="-1"])',
 ].join(',')
 
-function Modal({ children, id, isOpen, title, onClose }) {
+function Modal({ children, closeLabel = 'Cerrar', id, isOpen, title, onClose }) {
   const dialogRef = useRef(null)
   const bodyRef = useRef(null)
   const titleId = `${id}-title`
@@ -98,7 +98,7 @@ function Modal({ children, id, isOpen, title, onClose }) {
           <button
             className="modal__close"
             type="button"
-            aria-label="Cerrar"
+            aria-label={closeLabel}
             onClick={onClose}
           >
             ✕

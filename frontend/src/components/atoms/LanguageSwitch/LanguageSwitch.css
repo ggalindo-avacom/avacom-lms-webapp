@@ -1,0 +1,44 @@
+/* Abajo a la derecha: en las pantallas tactiles grandes la parte superior
+   queda fuera del alcance de la mano. */
+.language-switch {
+  position: fixed;
+  z-index: 60;
+  right: 16px;
+  bottom: 16px;
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid rgb(24 24 27 / 12%);
+  border-radius: 999px;
+  background: rgb(255 255 255 / 88%);
+  box-shadow: 0 2px 10px rgb(24 24 27 / 10%);
+  backdrop-filter: blur(6px);
+}
+
+.language-switch button {
+  min-width: 44px;
+  min-height: 32px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: #52525b;
+  font: inherit;
+  font-size: .8rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.language-switch button:hover {
+  background: rgb(24 24 27 / 6%);
+}
+
+.language-switch button.is-active {
+  background: #18181b;
+  color: #fafafa;
+}
+
+.language-switch button:focus-visible {
+  outline: 3px solid rgb(229 38 43 / 25%);
+  outline-offset: 1px;
+}

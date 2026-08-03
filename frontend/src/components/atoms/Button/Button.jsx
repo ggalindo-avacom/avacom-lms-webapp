@@ -1,9 +1,9 @@
 import './Button.css'
 
-function Button({ children, isLoading = false, ...props }) {
+function Button({ children, isLoading = false, loadingLabel = 'Ingresando...', ...props }) {
   return (
     <button className="button" disabled={isLoading || props.disabled} {...props}>
-      {isLoading ? 'Ingresando...' : children}
+      {isLoading ? loadingLabel : children}
     </button>
   )
 }

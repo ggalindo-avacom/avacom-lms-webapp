@@ -5,9 +5,11 @@ import AccessTabs from '../../molecules/AccessTabs/AccessTabs'
 import LoginForm from '../../molecules/LoginForm/LoginForm'
 import QrAccess from '../../molecules/QrAccess/QrAccess'
 import { useLogin } from '../../../hooks/useLogin'
+import { useLanguage } from '../../../i18n/LanguageContext'
 import './HomeAccess.css'
 
 function HomeAccess({ hostNetwork }) {
+  const { t } = useLanguage()
   const [activeTab, setActiveTab] = useState('qr')
   const navigate = useNavigate()
   const { authenticate, error, isLoading } = useLogin()
@@ -24,8 +26,8 @@ function HomeAccess({ hostNetwork }) {
     <section className="home-access">
       <div className="home-access__panel">
         <header>
-          <h2>Iniciar sesión</h2>
-          <p>Escanea tu código QR o ingresa con tus credenciales.</p>
+          <h2>{t('access.title')}</h2>
+          <p>{t('access.subtitle')}</p>
         </header>
         <AccessTabs activeTab={activeTab} onChange={setActiveTab} />
         {activeTab === 'qr' ? (
@@ -36,7 +38,7 @@ function HomeAccess({ hostNetwork }) {
               isLoading={hostNetwork.isLoading}
             />
             <button className="home-access__primary" type="button">
-              Ingresar <span aria-hidden="true">→</span>
+              {t('access.enter')} <span aria-hidden="true">→</span>
             </button>
           </>
         ) : (
@@ -47,7 +49,7 @@ function HomeAccess({ hostNetwork }) {
           />
         )}
         <p className="home-access__signup">
-          ¿No tienes cuenta? <button type="button">Crear cuenta</button>
+          {t('access.noAccount')} <button type="button">{t('access.createAccount')}</button>
         </p>
       </div>
     </section>

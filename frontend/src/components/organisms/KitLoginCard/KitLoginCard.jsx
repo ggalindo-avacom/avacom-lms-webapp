@@ -3,6 +3,7 @@ import { useState } from 'react'
 import KitButton from '../../atoms/KitButton/KitButton'
 import KitField from '../../atoms/KitField/KitField'
 import KitLogo from '../../atoms/KitLogo/KitLogo'
+import { useLanguage } from '../../../i18n/LanguageContext'
 import './KitLoginCard.css'
 
 const initialValues = {
@@ -11,6 +12,7 @@ const initialValues = {
 }
 
 function KitLoginCard({ onSubmit }) {
+  const { t } = useLanguage()
   const [values, setValues] = useState(initialValues)
 
   const handleChange = ({ target }) => {
@@ -29,15 +31,15 @@ function KitLoginCard({ onSubmit }) {
     <form className="kit-login-card" onSubmit={handleSubmit} noValidate>
       <KitLogo />
       <p className="kit-login-card__sub">
-        Gestión del Aprendizaje · Prototipo de presentación
+        {t('kit.subtitle')}
       </p>
 
       <KitField
         id="kit-login-username"
         name="username"
         type="text"
-        label="Usuario"
-        placeholder="nombre.apellido"
+        label={t('kit.username')}
+        placeholder={t('kit.usernamePlaceholder')}
         autoComplete="username"
         value={values.username}
         onChange={handleChange}
@@ -46,15 +48,15 @@ function KitLoginCard({ onSubmit }) {
         id="kit-login-password"
         name="password"
         type="password"
-        label="Contraseña"
-        placeholder="••••••••"
+        label={t('kit.password')}
+        placeholder={t('kit.passwordPlaceholder')}
         autoComplete="current-password"
         value={values.password}
         onChange={handleChange}
       />
 
       <KitButton size="big" type="submit" variant="primary">
-        Iniciar sesión
+        {t('kit.submit')}
       </KitButton>
     </form>
   )

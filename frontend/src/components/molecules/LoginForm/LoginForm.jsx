@@ -2,11 +2,13 @@ import { useState } from 'react'
 
 import Button from '../../atoms/Button/Button'
 import Input from '../../atoms/Input/Input'
+import { useLanguage } from '../../../i18n/LanguageContext'
 import './LoginForm.css'
 
 const initialValues = { email: '', password: '' }
 
 function LoginForm({ error, isLoading, onSubmit }) {
+  const { t } = useLanguage()
   const [values, setValues] = useState(initialValues)
   const [fieldErrors, setFieldErrors] = useState({})
 
@@ -19,8 +21,8 @@ function LoginForm({ error, isLoading, onSubmit }) {
     event.preventDefault()
     const errors = {}
 
-    if (!values.email.trim()) errors.email = 'El correo es obligatorio.'
-    if (!values.password) errors.password = 'La contraseña es obligatoria.'
+    if (!values.email.trim()) errors.email = t('login.emailRequired')
+    if (!values.password) errors.password = t('login.passwordRequired')
 
     if (Object.keys(errors).length) {
       setFieldErrors(errors)
@@ -36,8 +38,8 @@ function LoginForm({ error, isLoading, onSubmit }) {
         id="email"
         name="email"
         type="email"
-        label="Correo electrónico"
-        placeholder="nombre@correo.com"
+        label={t('login.email')}
+        placeholder={t('login.emailPlaceholder')}
         autoComplete="email"
         value={values.email}
         error={fieldErrors.email}
@@ -47,8 +49,8 @@ function LoginForm({ error, isLoading, onSubmit }) {
         id="password"
         name="password"
         type="password"
-        label="Contraseña"
-        placeholder="Ingresa tu contraseña"
+        label={t('login.password')}
+        placeholder={t('login.passwordPlaceholder')}
         autoComplete="current-password"
         value={values.password}
         error={fieldErrors.password}
@@ -59,8 +61,8 @@ function LoginForm({ error, isLoading, onSubmit }) {
           {error}
         </p>
       )}
-      <Button type="submit" isLoading={isLoading}>
-        Iniciar sesión
+      <Button type="submit" isLoading={isLoading} loadingLabel={t('login.loading')}>
+        {t('login.submit')}
       </Button>
     </form>
   )

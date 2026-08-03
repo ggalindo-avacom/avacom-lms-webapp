@@ -5,34 +5,36 @@ import Modal from '../../atoms/Modal/Modal'
 import WifiNetworkForm from '../../molecules/WifiNetworkForm/WifiNetworkForm'
 import WifiNetworkQr from '../../molecules/WifiNetworkQr/WifiNetworkQr'
 import { createWifiNetwork } from '../../../apiCalls/networkService'
+import { useLanguage } from '../../../i18n/LanguageContext'
 import './HomeIntro.css'
 
 function HomeIntro({ hostNetwork }) {
+  const { t } = useLanguage()
   const [isFormOpen, setIsFormOpen] = useState(false)
   const [isSaving, setIsSaving] = useState(false)
   const [saveError, setSaveError] = useState('')
-  const [successMessage, setSuccessMessage] = useState('')
+  const [savedNetworkName, setSavedNetworkName] = useState('')
 
   const openNetworkForm = () => {
     setIsFormOpen(true)
     setSaveError('')
-    setSuccessMessage('')
+    setSavedNetworkName('')
   }
 
   const closeNetworkForm = useCallback(() => {
     setIsFormOpen(false)
     setSaveError('')
-    setSuccessMessage('')
+    setSavedNetworkName('')
   }, [])
 
   const handleCreateNetwork = async (wifiNetwork) => {
     setIsSaving(true)
     setSaveError('')
-    setSuccessMessage('')
+    setSavedNetworkName('')
 
     try {
       const createdNetwork = await createWifiNetwork(wifiNetwork)
-      setSuccessMessage(`La red ${createdNetwork.name} fue guardada correctamente.`)
+      setSavedNetworkName(createdNetwork.name)
       hostNetwork.refresh()
     } catch (requestError) {
       setSaveError(requestError.message)
@@ -46,8 +48,8 @@ function HomeIntro({ hostNetwork }) {
       <div className="home-intro__header">
         <AvacomLogo />
         <div className="home-intro__content">
-          <span className="home-intro__badge">◇ Plataforma para docentes</span>
-          <h1>Tu aula, organizada y lista para enseñar.</h1>
+          <span className="home-intro__badge">{t('home.badge')}</span>
+          <h1>{t('home.title')}</h1>
         </div>
       </div>
 
@@ -65,21 +67,22 @@ function HomeIntro({ hostNetwork }) {
           aria-controls="wifi-network-form"
           onClick={openNetworkForm}
         >
-          Registrar una nueva red
+          {t('home.registerNetwork')}
         </button>
       </div>
 
       <Modal
         id="wifi-network-form"
         isOpen={isFormOpen}
-        title="Registrar una nueva red"
+        closeLabel={t('modal.close')}
+        title={t('home.registerNetwork')}
         onClose={closeNetworkForm}
       >
         <WifiNetworkForm
           detectedSsid={hostNetwork.networkData?.wifi?.ssid || ''}
           error={saveError}
           isSaving={isSaving}
-          successMessage={successMessage}
+          successMessage={savedNetworkName ? t('home.networkSaved', { name: savedNetworkName }) : ''}
           onCancel={closeNetworkForm}
           onSubmit={handleCreateNetwork}
         />

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 
 import Input from '../../atoms/Input/Input'
+import { useLanguage } from '../../../i18n/LanguageContext'
 import './WifiNetworkForm.css'
 
 const initialValues = {
@@ -17,6 +18,7 @@ function WifiNetworkForm({
   onSubmit,
   successMessage = '',
 }) {
+  const { t } = useLanguage()
   const [values, setValues] = useState({
     ...initialValues,
     name: detectedSsid,
@@ -52,7 +54,7 @@ function WifiNetworkForm({
     const nextErrors = {}
 
     if (!values.name.trim()) {
-      nextErrors.name = 'El nombre de la red es obligatorio.'
+      nextErrors.name = t('wifiForm.nameRequired')
     }
 
     if (Object.keys(nextErrors).length) {
@@ -72,8 +74,8 @@ function WifiNetworkForm({
         id="wifi-name"
         name="name"
         type="text"
-        label="Nombre de la red (SSID)"
-        placeholder="Ej. Makers"
+        label={t('wifiForm.name')}
+        placeholder={t('wifiForm.namePlaceholder')}
         autoComplete="off"
         value={values.name}
         error={fieldErrors.name}
@@ -81,14 +83,14 @@ function WifiNetworkForm({
       />
 
       <label className="wifi-network-form__field" htmlFor="wifi-type">
-        <span>Tipo de seguridad</span>
+        <span>{t('wifiForm.type')}</span>
         <select
           id="wifi-type"
           name="type"
           value={values.type}
           onChange={handleChange}
         >
-          <option value="nopass">Red abierta</option>
+          <option value="nopass">{t('wifiForm.typeOpen')}</option>
           <option value="WPA">WPA / WPA2 / WPA3</option>
           <option value="WEP">WEP</option>
         </select>
@@ -98,11 +100,11 @@ function WifiNetworkForm({
         id="wifi-password"
         name="wifipassword"
         type="password"
-        label="Contraseña"
+        label={t('wifiForm.password')}
         placeholder={
           values.type === 'nopass'
-            ? 'No requerida para una red abierta'
-            : 'Contraseña de la red'
+            ? t('wifiForm.passwordOpen')
+            : t('wifiForm.passwordPlaceholder')
         }
         autoComplete="new-password"
         value={values.wifipassword}
@@ -123,10 +125,10 @@ function WifiNetworkForm({
 
       <div className="wifi-network-form__actions">
         <button type="button" className="wifi-network-form__cancel" onClick={onCancel}>
-          Cancelar
+          {t('wifiForm.cancel')}
         </button>
         <button type="submit" className="wifi-network-form__save" disabled={isSaving}>
-          {isSaving ? 'Guardando…' : 'Guardar red'}
+          {isSaving ? t('wifiForm.saving') : t('wifiForm.save')}
         </button>
       </div>
     </form>
