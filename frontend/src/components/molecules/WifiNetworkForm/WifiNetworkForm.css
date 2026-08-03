@@ -2,11 +2,7 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  width: min(100%, 390px);
-  padding: 20px;
-  border: 1px solid #ded8d8;
-  border-radius: 14px;
-  background: rgb(255 255 255 / 72%);
+  width: 100%;
 }
 
 .wifi-network-form__field {

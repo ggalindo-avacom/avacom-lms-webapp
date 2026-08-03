@@ -1,0 +1,11 @@
+/* El prototipo pinta el degradado en un ::before fijo del body. Aquí va como
+   fondo fijo del propio contenedor para no tocar los estilos globales. */
+.kit-auth-template {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  padding: 1.5rem;
+  background-color: #efeeeb;
+  background-image: var(--grad-canvas);
+  background-attachment: fixed;
+}

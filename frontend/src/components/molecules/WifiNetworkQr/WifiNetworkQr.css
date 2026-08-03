@@ -1,8 +1,9 @@
 .wifi-network-qr {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   flex-direction: column;
   gap: 12px;
+  text-align: center;
 }
 
 .wifi-network-qr__label,

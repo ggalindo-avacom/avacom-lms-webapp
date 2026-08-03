@@ -1,0 +1,24 @@
+.kit-login-card {
+  display: flex;
+  flex-direction: column;
+  gap: .9rem;
+  width: min(31rem, 100%);
+  padding: 2.5rem;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--card-shadow);
+}
+
+.kit-login-card__sub {
+  margin: 0 0 .5rem;
+  color: var(--c-ink3);
+  font-family: var(--font-mono);
+  font-size: .85rem;
+}
+
+/* El botón grande del kit alinea a la izquierda porque allí acompañaba a un
+   avatar; aquí solo lleva su etiqueta, así que va centrada. */
+.kit-login-card .kit-btn--big {
+  justify-content: center;
+}

@@ -1,0 +1,91 @@
+.modal {
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: clamp(20px, 4vw, 48px);
+
+  /* Anclado un poco debajo del borde superior: en pantallas UHD el diálogo
+     sigue quedando a la altura de la mano y no se pierde en el centro. */
+  padding-top: clamp(64px, 12vh, 170px);
+  overflow-y: auto;
+  background: rgb(23 32 51 / 45%);
+  backdrop-filter: blur(2px);
+  animation: modal-overlay-in .18s ease-out;
+}
+
+.modal__dialog {
+  width: min(100%, 430px);
+  border: 1px solid #ded8d8;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: var(--shadow-card);
+  animation: modal-dialog-in .2s ease-out;
+}
+
+.modal__dialog:focus-visible {
+  outline: 3px solid rgb(229 38 43 / 18%);
+  outline-offset: 2px;
+}
+
+.modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 20px 0;
+}
+
+.modal__title {
+  margin: 0;
+  color: #111;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.modal__close {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid #ccc5c5;
+  border-radius: 999px;
+  background: transparent;
+  color: #514b4b;
+  font-size: .8rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.modal__close:hover {
+  background: #fff0f0;
+  color: #a20d12;
+}
+
+.modal__close:focus-visible {
+  outline: 3px solid rgb(229 38 43 / 18%);
+  outline-offset: 2px;
+}
+
+.modal__body {
+  padding: 16px 20px 20px;
+}
+
+@keyframes modal-overlay-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modal-dialog-in {
+  from { transform: translateY(-10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .modal,
+  .modal__dialog {
+    animation: none;
+  }
+}

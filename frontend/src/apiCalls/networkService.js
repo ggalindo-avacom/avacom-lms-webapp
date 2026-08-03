@@ -50,8 +50,14 @@ export async function createWifiNetwork(wifiNetwork) {
   return responseBody.data
 }
 
+/* El QR lleva al dispositivo invitado a la pantalla de inicio de sesión del
+   frontend servido por esta máquina, con la dirección del backend como query
+   para que el equipo remoto sepa a qué API pedirle los datos. */
+const QR_ACCESS_PATH = '/login'
+
 export function buildQrAccessUrl(networkData) {
   const frontendUrl = new URL(networkData.frontend_address)
+  frontendUrl.pathname = QR_ACCESS_PATH
   frontendUrl.searchParams.set('backend', networkData.query)
   return frontendUrl.toString()
 }

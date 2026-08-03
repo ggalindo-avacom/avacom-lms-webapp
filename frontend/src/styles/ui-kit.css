@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500&display=swap");
+
+/* Tokens del prototipo "Avacom LMS UI Kit v2 Glass".
+   Se declaran sobre .ui-kit —no sobre :root— para que ni las variables ni la
+   tipografía afecten a las pantallas que ya existen en el proyecto. */
+.ui-kit {
+  --grad-canvas: linear-gradient(120deg, #fdecec 0%, #e6f6fc 42%, #fef9e6 78%, #f5e8f1 100%);
+  --surface: rgb(255 255 255 / 96%);
+  --hairline: rgb(24 24 27 / 9%);
+  --c-ink: #18181b;
+  --c-ink2: #3f3f46;
+  --c-ink3: #52525b;
+  --c-ink4: #71717a;
+  --c-accent: #e5262b;
+  --c-accent-press: #c41e24;
+  --c-accent-soft: #fdecec;
+  --radius: 16px;
+  --radius-lg: 24px;
+  --font: Geist, system-ui, sans-serif;
+  --font-mono: "Geist Mono", monospace;
+  --card-shadow: 0 1px 3px rgb(24 24 27 / 5%), 0 16px 40px rgb(24 24 27 / 7%);
+  --raised: -4px -4px 10px rgb(255 255 255 / 90%), 6px 8px 16px rgb(24 24 27 / 12%);
+  --raised-sm: -3px -3px 7px rgb(255 255 255 / 90%), 4px 5px 9px rgb(24 24 27 / 16%);
+  --raised-red: -4px -4px 10px rgb(255 255 255 / 80%), 6px 8px 16px rgb(229 38 43 / 35%);
+  --pressed: inset 4px 4px 10px rgb(24 24 27 / 16%), inset -4px -4px 10px rgb(255 255 255 / 90%);
+  --focus: 0 0 0 4px rgb(229 38 43 / 25%);
+
+  color: var(--c-ink);
+  font: 400 1.05rem/1.55 var(--font);
+}
+
+.ui-kit button {
+  cursor: pointer;
+}
+
+.ui-kit :focus-visible {
+  outline: 0;
+  box-shadow: var(--focus);
+}

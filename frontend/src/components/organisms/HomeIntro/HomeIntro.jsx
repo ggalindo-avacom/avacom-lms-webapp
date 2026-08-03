@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 
 import AvacomLogo from '../../atoms/AvacomLogo/AvacomLogo'
+import Modal from '../../atoms/Modal/Modal'
 import WifiNetworkForm from '../../molecules/WifiNetworkForm/WifiNetworkForm'
 import WifiNetworkQr from '../../molecules/WifiNetworkQr/WifiNetworkQr'
 import { createWifiNetwork } from '../../../apiCalls/networkService'
@@ -12,11 +13,17 @@ function HomeIntro({ hostNetwork }) {
   const [saveError, setSaveError] = useState('')
   const [successMessage, setSuccessMessage] = useState('')
 
-  const toggleNetworkForm = () => {
-    setIsFormOpen((currentValue) => !currentValue)
+  const openNetworkForm = () => {
+    setIsFormOpen(true)
     setSaveError('')
     setSuccessMessage('')
   }
+
+  const closeNetworkForm = useCallback(() => {
+    setIsFormOpen(false)
+    setSaveError('')
+    setSuccessMessage('')
+  }, [])
 
   const handleCreateNetwork = async (wifiNetwork) => {
     setIsSaving(true)
@@ -36,14 +43,12 @@ function HomeIntro({ hostNetwork }) {
 
   return (
     <section className="home-intro">
-      <AvacomLogo />
-      <div className="home-intro__content">
-        <span className="home-intro__badge">◇ Plataforma para docentes</span>
-        <h1>Tu aula, organizada y lista para enseñar.</h1>
-        <p>
-          Planea tus clases, sigue el progreso de tus estudiantes y genera
-          certificados desde un solo lugar.
-        </p>
+      <div className="home-intro__header">
+        <AvacomLogo />
+        <div className="home-intro__content">
+          <span className="home-intro__badge">◇ Plataforma para docentes</span>
+          <h1>Tu aula, organizada y lista para enseñar.</h1>
+        </div>
       </div>
 
       <div className="home-intro__network">
@@ -55,31 +60,32 @@ function HomeIntro({ hostNetwork }) {
         <button
           className="home-intro__network-toggle"
           type="button"
+          aria-haspopup="dialog"
           aria-expanded={isFormOpen}
           aria-controls="wifi-network-form"
-          onClick={toggleNetworkForm}
+          onClick={openNetworkForm}
         >
-          {isFormOpen ? 'Cerrar configuración' : 'Registrar una nueva red'}
+          Registrar una nueva red
         </button>
-
-        {isFormOpen && (
-          <div id="wifi-network-form">
-            <WifiNetworkForm
-              detectedSsid={hostNetwork.networkData?.wifi?.ssid || ''}
-              error={saveError}
-              isSaving={isSaving}
-              successMessage={successMessage}
-              onCancel={toggleNetworkForm}
-              onSubmit={handleCreateNetwork}
-            />
-          </div>
-        )}
       </div>
 
-      <div className="home-intro__features">
-        <span>♢ Acceso seguro</span>
-        <span>⌁ Funciona sin conexión</span>
-      </div>
+      <Modal
+        id="wifi-network-form"
+        isOpen={isFormOpen}
+        title="Registrar una nueva red"
+        onClose={closeNetworkForm}
+      >
+        <WifiNetworkForm
+          detectedSsid={hostNetwork.networkData?.wifi?.ssid || ''}
+          error={saveError}
+          isSaving={isSaving}
+          successMessage={successMessage}
+          onCancel={closeNetworkForm}
+          onSubmit={handleCreateNetwork}
+        />
+      </Modal>
+
+   
     </section>
   )
 }

@@ -1,0 +1,25 @@
+.kit-field {
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+  margin-bottom: .6rem;
+  color: var(--c-ink3);
+  font-size: .88rem;
+  font-weight: 500;
+}
+
+.kit-field input {
+  min-height: 3.2rem;
+  padding: .7rem 1rem;
+  border: 1.5px solid var(--hairline);
+  border-radius: var(--radius);
+  background: #fff;
+  color: var(--c-ink);
+  font: inherit;
+}
+
+.kit-field input:focus {
+  border-color: var(--c-accent);
+  box-shadow: var(--focus);
+  outline: 0;
+}

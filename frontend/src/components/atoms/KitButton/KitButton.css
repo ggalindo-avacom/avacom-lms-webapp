@@ -1,0 +1,74 @@
+/* Botones elevados del kit: doble sombra en reposo, se hunden al presionar. */
+.kit-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .6rem;
+  min-height: 3.5rem;
+  margin: .2rem .2rem .2rem 0;
+  padding: .75rem 1.4rem;
+  border: 0;
+  border-radius: var(--radius);
+  background: #fff;
+  box-shadow: var(--raised);
+  color: var(--c-ink);
+  font: inherit;
+  font-weight: 600;
+  transition: box-shadow 120ms ease, transform 120ms ease, background 150ms ease;
+}
+
+.kit-btn:active {
+  transform: translateY(1px);
+  box-shadow: var(--pressed);
+}
+
+.kit-btn--primary {
+  background: var(--c-accent);
+  box-shadow: var(--raised-red);
+  color: #fff;
+}
+
+.kit-btn--primary:hover {
+  background: var(--c-accent-press);
+}
+
+.kit-btn--primary:active {
+  box-shadow:
+    inset 4px 4px 10px rgb(120 18 21 / 50%),
+    inset -4px -4px 10px rgb(255 120 122 / 25%);
+}
+
+.kit-btn--dark {
+  background: var(--c-ink);
+  color: #fafafa;
+}
+
+.kit-btn--dark:active {
+  box-shadow:
+    inset 4px 4px 10px rgb(0 0 0 / 60%),
+    inset -4px -4px 8px rgb(255 255 255 / 8%);
+}
+
+.kit-btn--ghost {
+  background: #fff;
+  color: var(--c-ink);
+}
+
+.kit-btn--big {
+  justify-content: flex-start;
+  width: 100%;
+  min-height: 64px;
+  border-radius: var(--radius);
+  font-size: 1.02rem;
+}
+
+.kit-btn--mini {
+  min-height: 44px;
+  padding: .4rem 1rem;
+  box-shadow: var(--raised-sm);
+  font-size: .85rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kit-btn { transition: none; }
+}
