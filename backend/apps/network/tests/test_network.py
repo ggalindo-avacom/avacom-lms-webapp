@@ -227,3 +227,70 @@ class WifiNetworkApiTests(APITestCase):
             [network["name"] for network in response.json()["data"]],
             ["AVACOM", "Makers"],
         )
+
+    def test_updates_network_password(self):
+        wifi_network = WifiNetwork.objects.create(
+            name="Makers",
+            wifipassword="old-password",
+            type=WifiNetwork.EncryptionType.WPA,
+        )
+
+        response = self.client.patch(
+            f"/api/network/wifi-networks/{wifi_network.pk}/",
+            {"wifipassword": "new-password"},
+            format="json",
+        )
+
+        wifi_network.refresh_from_db()
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()["data"]["wifipassword"], "new-password")
+        self.assertEqual(wifi_network.wifipassword, "new-password")
+        self.assertEqual(wifi_network.name, "Makers")
+
+    def test_updates_network_type_and_normalizes_encryption(self):
+        wifi_network = WifiNetwork.objects.create(
+            name="Makers",
+            wifipassword="",
+            type=WifiNetwork.EncryptionType.NO_PASSWORD,
+        )
+
+        response = self.client.patch(
+            f"/api/network/wifi-networks/{wifi_network.pk}/",
+            {"type": "WPA3", "wifipassword": "Dc3k42vjry6*"},
+            format="json",
+        )
+
+        wifi_network.refresh_from_db()
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(wifi_network.type, "WPA")
+        self.assertEqual(wifi_network.wifipassword, "Dc3k42vjry6*")
+
+    def test_returns_not_found_when_updating_missing_network(self):
+        response = self.client.patch(
+            "/api/network/wifi-networks/9999/",
+            {"wifipassword": "irrelevant"},
+            format="json",
+        )
+
+        self.assertEqual(response.status_code, 404)
+
+    def test_deletes_network(self):
+        wifi_network = WifiNetwork.objects.create(
+            name="Makers",
+            wifipassword="secret",
+            type=WifiNetwork.EncryptionType.WPA,
+        )
+
+        response = self.client.delete(
+            f"/api/network/wifi-networks/{wifi_network.pk}/"
+        )
+
+        self.assertEqual(response.status_code, 204)
+        self.assertFalse(
+            WifiNetwork.objects.filter(pk=wifi_network.pk).exists()
+        )
+
+    def test_returns_not_found_when_deleting_missing_network(self):
+        response = self.client.delete("/api/network/wifi-networks/9999/")
+
+        self.assertEqual(response.status_code, 404)

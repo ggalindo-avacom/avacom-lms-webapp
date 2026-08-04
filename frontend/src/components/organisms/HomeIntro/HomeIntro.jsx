@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react'
 
 import AvacomLogo from '../../atoms/AvacomLogo/AvacomLogo'
 import Modal from '../../atoms/Modal/Modal'
-import WifiNetworkForm from '../../molecules/WifiNetworkForm/WifiNetworkForm'
+import WifiNetworkManager from '../WifiNetworkManager/WifiNetworkManager'
 import WifiNetworkQr from '../../molecules/WifiNetworkQr/WifiNetworkQr'
 import { createWifiNetwork } from '../../../apiCalls/networkService'
 import { useLanguage } from '../../../i18n/LanguageContext'
@@ -75,15 +75,16 @@ function HomeIntro({ hostNetwork }) {
         id="wifi-network-form"
         isOpen={isFormOpen}
         closeLabel={t('modal.close')}
-        title={t('home.registerNetwork')}
+        title={t('home.networkModalTitle')}
         onClose={closeNetworkForm}
       >
-        <WifiNetworkForm
+        <WifiNetworkManager
           detectedSsid={hostNetwork.networkData?.wifi?.ssid || ''}
           error={saveError}
           isSaving={isSaving}
           successMessage={savedNetworkName ? t('home.networkSaved', { name: savedNetworkName }) : ''}
           onCancel={closeNetworkForm}
+          onNetworksChanged={hostNetwork.refresh}
           onSubmit={handleCreateNetwork}
         />
       </Modal>

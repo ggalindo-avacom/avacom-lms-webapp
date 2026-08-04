@@ -1,0 +1,129 @@
+.wifi-network-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.wifi-network-list__hint {
+  margin: 0;
+  padding: 14px 4px;
+  color: #6e6868;
+  font-size: .9rem;
+  text-align: center;
+}
+
+.wifi-network-list__items {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.wifi-network-list__item {
+  padding: 12px 2px;
+  border-bottom: 1px solid #eee7e7;
+}
+
+.wifi-network-list__item:last-child {
+  border-bottom: 0;
+}
+
+.wifi-network-list__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.wifi-network-list__info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow: hidden;
+}
+
+.wifi-network-list__info strong {
+  overflow: hidden;
+  color: #1e1b1b;
+  font-size: .95rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.wifi-network-list__info span {
+  color: #6e6868;
+  font-size: .78rem;
+}
+
+.wifi-network-list__actions {
+  display: flex;
+  flex: none;
+  gap: 8px;
+}
+
+.wifi-network-list__actions button {
+  min-height: 38px;
+  padding: 0 14px;
+  border-radius: 999px;
+  font: inherit;
+  font-size: .8rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.wifi-network-list__actions button:disabled {
+  cursor: not-allowed;
+  opacity: .6;
+}
+
+.wifi-network-list__update {
+  border: 1px solid #e5262b;
+  background: transparent;
+  color: #a20d12;
+}
+
+.wifi-network-list__update:hover {
+  background: #fff0f0;
+}
+
+.wifi-network-list__delete {
+  border: 1px solid #ccc5c5;
+  background: transparent;
+  color: #514b4b;
+}
+
+.wifi-network-list__delete.is-confirming {
+  border-color: #b42318;
+  background: #b42318;
+  color: #fff;
+}
+
+.wifi-network-list__edit {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 12px;
+  padding: 14px;
+  border: 1px dashed #ddd4d4;
+  border-radius: 12px;
+  background: #faf7f7;
+}
+
+.wifi-network-list__message {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: .82rem;
+  line-height: 1.4;
+}
+
+.wifi-network-list__message--error {
+  background: #fef3f2;
+  color: #b42318;
+}
+
+.wifi-network-list__message--success {
+  background: #ecfdf3;
+  color: #027a48;
+}

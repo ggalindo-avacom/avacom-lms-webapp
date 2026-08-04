@@ -50,6 +50,43 @@ export async function createWifiNetwork(wifiNetwork) {
   return responseBody.data
 }
 
+export async function getWifiNetworks(options = {}) {
+  const responseBody = await apiRequest('/network/wifi-networks/', options)
+
+  if (!Array.isArray(responseBody?.data)) {
+    throw new ApiError(
+      'La API respondió sin la lista de redes.',
+      502,
+      responseBody,
+    )
+  }
+
+  return responseBody.data
+}
+
+export async function updateWifiNetwork(networkId, changes) {
+  const responseBody = await apiRequest(`/network/wifi-networks/${networkId}/`, {
+    method: 'PATCH',
+    body: JSON.stringify(changes),
+  })
+
+  if (!responseBody?.data || typeof responseBody.data !== 'object') {
+    throw new ApiError(
+      'La API respondió sin los datos de la red actualizada.',
+      502,
+      responseBody,
+    )
+  }
+
+  return responseBody.data
+}
+
+export async function deleteWifiNetwork(networkId) {
+  await apiRequest(`/network/wifi-networks/${networkId}/`, {
+    method: 'DELETE',
+  })
+}
+
 /* El QR lleva al dispositivo invitado a la pantalla de inicio de sesión del
    frontend servido por esta máquina, con la dirección del backend como query
    para que el equipo remoto sepa a qué API pedirle los datos. */
