@@ -37,6 +37,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'rest_framework',
+    'channels',
     'login.apps.LoginConfig',
     'apps.courses.apps.CoursesConfig',
     'apps.network.apps.NetworkConfig',
@@ -82,6 +84,15 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'lms.wsgi.application'
+ASGI_APPLICATION = 'lms.asgi.application'
+
+# Presencia de estudiantes: capa de canales en memoria (un solo proceso),
+# sin Redis ni servicios adicionales.
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer',
+    },
+}
 
 
 # Database
