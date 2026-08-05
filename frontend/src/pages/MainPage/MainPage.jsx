@@ -5,7 +5,7 @@ import logo from '../../assets/avacom-logo.svg?no-inline'
 import DesktopHexMenu from '../../components/organisms/DesktopHexMenu/DesktopHexMenu'
 import MainNavbar from '../../components/organisms/MainNavbar/MainNavbar'
 import { getMenuItems } from '../../components/organisms/MainMenu/menuItems'
-import MenuButtons from '../../components/organisms/MenuButtons/MenuButtons'
+import ResponsiveHexMenu from '../../components/organisms/ResponsiveHexMenu/ResponsiveHexMenu'
 import { useLanguage } from '../../i18n/LanguageContext'
 import './MainPage.css'
 
@@ -62,7 +62,7 @@ function MainPage() {
         </div>
       </header>
 
-      <MenuButtons greetingKey={profile.greetingKey} items={items} onSignOut={handleSignOut} />
+      <ResponsiveHexMenu greetingKey={profile.greetingKey} items={items} onSignOut={handleSignOut} role={role} />
       <DesktopHexMenu items={items} />
       <MainNavbar role={role} onSignOut={handleSignOut} />
     </div>

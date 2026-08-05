@@ -19,6 +19,7 @@ import { useLanguage } from '../../../i18n/LanguageContext'
 import './MainNavbar.css'
 
 const STORAGE_KEY = 'avacom.menu.navOpen'
+const compactNavIds = new Set(['menu', 'help', 'logout'])
 
 const commonNavItems = {
   auditLogs: { id: 'auditLogs', Icon: Scroll, labelKey: 'main.auditLogs' },
@@ -106,7 +107,7 @@ function MainNavbar({ onSignOut, role = 'estudiante' }) {
             {navItems.map(({ id, Icon, labelKey }, index) => (
               <button
                 key={id}
-                className="main-navbar__item"
+                className={`main-navbar__item${compactNavIds.has(id) ? ' main-navbar__item--compact' : ''}`}
                 type="button"
                 title={t(labelKey)}
                 tabIndex={open ? 0 : -1}

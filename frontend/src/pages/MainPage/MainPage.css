@@ -1,6 +1,8 @@
 .main-page {
   min-height: 100vh;
   padding: clamp(1rem, 3vw, 2.5rem);
+  overflow-x: hidden;
+  overflow-x: clip;
   background: #f1f1f1;
   color: var(--c-ink);
 }
@@ -30,12 +32,35 @@
   font-weight: 700;
 }
 
-@media (max-width: 520px) {
-  .main-page__brand span { display: none; }
-  .main-page__user strong { font-size: .9rem; }
+@media (max-width: 1279px) {
+  .main-page { padding-top: clamp(.55rem, 1.6vw, 1rem); }
+
+  .main-page__header { gap: .65rem; }
+
+  .main-page__user { gap: clamp(.35rem, 1.2vw, .55rem); }
+
+  .main-page__avatar {
+    width: clamp(2.35rem, 7vw, 2.8rem);
+    border-radius: clamp(.7rem, 2.5vw, .9rem);
+    font-size: clamp(.72rem, 2.4vw, .9rem);
+  }
+
+  .main-page__user strong {
+    font-size: clamp(.78rem, 2.2vw, .95rem);
+    line-height: 1.1;
+  }
+
+  .main-page__user small {
+    font-size: clamp(.65rem, 1.9vw, .78rem);
+    line-height: 1.15;
+  }
 }
 
-@media (min-width: 1280px) and (min-height: 800px) {
+@media (max-width: 520px) {
+  .main-page__brand span { display: none; }
+}
+
+@media (min-width: 1280px) {
   .main-page {
     --hex: clamp(58px, min(20.5vw, calc((50vw - 22px) / var(--cluster-half, 1.617)), calc((100vh - 260px) / var(--cluster-height, 3.1))), 222px);
     --nav-height: clamp(50px, 6.3vh, 68px);

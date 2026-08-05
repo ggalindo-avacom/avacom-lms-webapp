@@ -135,9 +135,13 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
+@media (max-width: 1279px) {
+  .main-navbar { --nav-open-width: 230px; }
+  .main-navbar__item:not(.main-navbar__item--compact) { display: none; }
+}
+
 @media (max-width: 620px) {
   .main-navbar { bottom: 14px; }
-  .main-navbar__pill.is-open .main-navbar__clip { overflow-x: auto; }
 }
 
 @media (prefers-reduced-motion: reduce) {

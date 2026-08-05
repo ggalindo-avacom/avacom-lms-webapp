@@ -1,6 +1,6 @@
 .desktop-hex-menu { display: none; }
 
-@media (min-width: 1280px) and (min-height: 800px) {
+@media (min-width: 1280px) {
   .desktop-hex-menu {
     position: relative;
     z-index: 10;
