@@ -18,7 +18,7 @@
   .desktop-hex-menu__cluster {
     position: relative;
     width: calc(var(--hex) * var(--cluster-half, 1.617) * 2);
-    height: calc(var(--hex) * 3.1);
+    height: calc(var(--hex) * var(--cluster-height, 3.1));
   }
 
   .desktop-hex-menu__background {

@@ -37,7 +37,7 @@
 
 @media (min-width: 1280px) and (min-height: 800px) {
   .main-page {
-    --hex: clamp(58px, min(20.5vw, calc((50vw - 22px) / var(--cluster-half, 1.617)), calc((100vh - 260px) / 3.1)), 222px);
+    --hex: clamp(58px, min(20.5vw, calc((50vw - 22px) / var(--cluster-half, 1.617)), calc((100vh - 260px) / var(--cluster-height, 3.1))), 222px);
     --nav-height: clamp(50px, 6.3vh, 68px);
     position: relative;
     padding: 0;

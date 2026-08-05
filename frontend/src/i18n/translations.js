@@ -90,6 +90,11 @@ export const translations = {
     'main.reports': 'Reportes',
     'main.students': 'Estudiantes',
     'main.attendance': 'Asistencia',
+    'main.auditLogs': 'Logs Bitácora',
+    'main.teachers': 'Profesores',
+    'main.settings': 'Configuración',
+    'main.adminRole': 'Administrador',
+    'main.adminGreeting': 'Bienvenido, Admin AVACOM',
   },
   en: {
     'home.badge': '◇ Platform for teachers',
@@ -182,5 +187,10 @@ export const translations = {
     'main.reports': 'Reports',
     'main.students': 'Students',
     'main.attendance': 'Attendance',
+    'main.auditLogs': 'Audit Logs',
+    'main.teachers': 'Teachers',
+    'main.settings': 'Settings',
+    'main.adminRole': 'Administrator',
+    'main.adminGreeting': 'Welcome, AVACOM Admin',
   },
 }

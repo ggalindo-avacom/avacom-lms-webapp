@@ -20,7 +20,7 @@ function DesktopHexMenu({ items }) {
       <div className="desktop-hex-menu__cluster">
         <img className="desktop-hex-menu__background" src={colorHexagon} alt="" aria-hidden="true" />
 
-        {items.map(({ id, Icon, color, labelKey, x, y }) => (
+        {items.filter(({ hideInHexMenu }) => !hideInHexMenu).map(({ id, Icon, color, labelKey, x, y }) => (
           <div
             key={id}
             className="desktop-hex-menu__cell"

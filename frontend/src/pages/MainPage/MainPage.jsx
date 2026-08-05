@@ -10,8 +10,18 @@ import { useLanguage } from '../../i18n/LanguageContext'
 import './MainPage.css'
 
 const profiles = {
+  admin: {
+    chip: '#7b2f75',
+    clusterHeight: 3.1,
+    greetingKey: 'main.adminGreeting',
+    halfWidth: 1.617,
+    initials: 'AC',
+    name: 'Admin AVACOM',
+    roleKey: 'main.adminRole',
+  },
   estudiante: {
     chip: '#6b6b6b',
+    clusterHeight: 3.1,
     greetingKey: 'main.greeting',
     halfWidth: 1.617,
     initials: 'SR',
@@ -20,8 +30,9 @@ const profiles = {
   },
   profesor: {
     chip: '#8a6a2f',
+    clusterHeight: 5.046,
     greetingKey: 'main.teacherGreeting',
-    halfWidth: 3.2925,
+    halfWidth: 2.734,
     initials: 'CT',
     name: 'Prof. Claudia',
     roleKey: 'main.teacherRole',
@@ -32,13 +43,14 @@ function MainPage() {
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()
   const { t } = useLanguage()
-  const role = searchParams.get('role') === 'profesor' ? 'profesor' : 'estudiante'
+  const requestedRole = searchParams.get('role')
+  const role = profiles[requestedRole] ? requestedRole : 'estudiante'
   const profile = profiles[role]
   const items = getMenuItems(role)
   const handleSignOut = () => navigate('/login', { replace: true })
 
   return (
-    <div className="main-page" style={{ '--cluster-half': profile.halfWidth }}>
+    <div className="main-page" style={{ '--cluster-half': profile.halfWidth, '--cluster-height': profile.clusterHeight }}>
       <header className="main-page__header">
         <div className="main-page__brand">
           <img src={logo} alt="AVACOM" />

@@ -10,7 +10,7 @@ import { useStudentPresence } from '../../hooks/useStudentPresence'
 const demoRoutes = {
   estudiante: '/mainmenu',
   profesor: '/mainmenu?role=profesor',
-  admin: '/',
+  admin: '/mainmenu?role=admin',
 }
 
 function KitLoginPage() {

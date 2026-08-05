@@ -1,5 +1,6 @@
 .main-navbar {
   --nav-height: clamp(50px, 6.3vh, 68px);
+  --nav-open-width: 540px;
   position: fixed;
   right: 0;
   bottom: clamp(14px, 7.8vh, 84px);
@@ -11,6 +12,9 @@
   pointer-events: none;
   animation: main-navbar-in 800ms cubic-bezier(.2, .85, .25, 1) 520ms both;
 }
+
+.main-navbar--profesor { --nav-open-width: 640px; }
+.main-navbar--admin { --nav-open-width: 720px; }
 
 .main-navbar__pill {
   display: flex;
@@ -52,7 +56,7 @@
   transition: max-width 520ms cubic-bezier(.22, .9, .24, 1);
 }
 
-.main-navbar__pill.is-open .main-navbar__clip { max-width: min(540px, calc(100vw - 110px)); }
+.main-navbar__pill.is-open .main-navbar__clip { max-width: min(var(--nav-open-width), calc(100vw - 110px)); }
 
 .main-navbar__items {
   display: flex;

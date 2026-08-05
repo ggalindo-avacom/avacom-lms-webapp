@@ -4,10 +4,14 @@ import {
   Books,
   Broadcast,
   CaretDoubleRight,
+  ChalkboardTeacher,
+  Gear,
   Question,
+  Scroll,
   SignOut,
   SquaresFour,
   User,
+  UsersThree,
 } from '@phosphor-icons/react'
 
 import logoSymbol from '../../../assets/avacom-symbol.svg?no-inline'
@@ -17,15 +21,29 @@ import './MainNavbar.css'
 const STORAGE_KEY = 'avacom.menu.navOpen'
 
 const commonNavItems = {
+  auditLogs: { id: 'auditLogs', Icon: Scroll, labelKey: 'main.auditLogs' },
   encyclopedia: { id: 'encyclopedia', Icon: Books, labelKey: 'main.encyclopedia' },
   help: { id: 'help', Icon: Question, labelKey: 'main.help' },
   logout: { id: 'logout', Icon: SignOut, labelKey: 'main.signOut' },
   menu: { id: 'menu', Icon: SquaresFour, labelKey: 'main.menu' },
   profile: { id: 'profile', Icon: User, labelKey: 'main.profile' },
+  settings: { id: 'settings', Icon: Gear, labelKey: 'main.settings' },
+  students: { id: 'students', Icon: UsersThree, labelKey: 'main.students' },
   subjects: { id: 'subjects', Icon: BookOpen, labelKey: 'main.subjects' },
+  teachers: { id: 'teachers', Icon: ChalkboardTeacher, labelKey: 'main.teachers' },
 }
 
 const navItemsByRole = {
+  admin: [
+    commonNavItems.menu,
+    commonNavItems.auditLogs,
+    commonNavItems.teachers,
+    commonNavItems.students,
+    commonNavItems.profile,
+    commonNavItems.settings,
+    commonNavItems.help,
+    commonNavItems.logout,
+  ],
   estudiante: [
     commonNavItems.menu,
     commonNavItems.subjects,
@@ -77,7 +95,7 @@ function MainNavbar({ onSignOut, role = 'estudiante' }) {
   const toggleLabel = open ? t('main.navCollapse') : t('main.navExpand')
 
   return (
-    <nav className="main-navbar" aria-label={t('main.navAria')}>
+    <nav className={`main-navbar main-navbar--${role}`} aria-label={t('main.navAria')}>
       <div className={`main-navbar__pill${open ? ' is-open' : ''}`}>
         <button className="main-navbar__home" type="button" onClick={toggle} aria-label={toggleLabel} aria-expanded={open}>
           <img src={logoSymbol} alt="" />
