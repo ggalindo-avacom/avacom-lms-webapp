@@ -1,0 +1,110 @@
+.desktop-hex-menu { display: none; }
+
+@media (min-width: 1280px) and (min-height: 800px) {
+  .desktop-hex-menu {
+    position: relative;
+    z-index: 10;
+    display: grid;
+    min-height: 100vh;
+    place-items: center;
+    padding: calc(clamp(16px, 3.1vh, 34px) * 2 + clamp(24px, 3.4vw, 54px)) 12px calc(var(--nav-height) + clamp(28px, 9vh, 150px));
+  }
+
+  .desktop-hex-menu__defs {
+    position: absolute;
+    pointer-events: none;
+  }
+
+  .desktop-hex-menu__cluster {
+    position: relative;
+    width: calc(var(--hex) * var(--cluster-half, 1.617) * 2);
+    height: calc(var(--hex) * 3.1);
+  }
+
+  .desktop-hex-menu__background {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    width: calc(var(--hex) * 2.599);
+    height: calc(var(--hex) * 2.896);
+    margin-top: calc(var(--hex) * -1.448);
+    margin-left: calc(var(--hex) * -1.2995);
+    animation: desktop-hex-background-in 900ms cubic-bezier(.2, .85, .25, 1) both;
+  }
+
+  .desktop-hex-menu__cell {
+    position: absolute;
+    top: calc(50% + var(--hex-y) * var(--hex));
+    left: calc(50% + var(--hex-x) * var(--hex));
+    width: var(--hex);
+    height: calc(var(--hex) * 1.1547);
+    margin-top: calc(var(--hex) * -.57735);
+    margin-left: calc(var(--hex) * -.5);
+    animation: desktop-hex-cell-in 760ms cubic-bezier(.22, .9, .28, 1.08) var(--hex-delay) both;
+  }
+
+  .desktop-hex-menu__shadow {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 1px 1px rgb(24 24 27 / 5%)) drop-shadow(0 4px 8px rgb(24 24 27 / 9%));
+    transition: filter 300ms cubic-bezier(.2, .8, .2, 1);
+  }
+
+  .desktop-hex-menu__shadow:hover {
+    filter: drop-shadow(0 2px 2px rgb(24 24 27 / 6%)) drop-shadow(0 9px 16px rgb(24 24 27 / 15%));
+  }
+
+  .desktop-hex-menu__button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    gap: calc(var(--hex) * .055);
+    padding: 0;
+    border: 0;
+    background: #fff;
+    clip-path: url(#mainMenuHex);
+    cursor: pointer;
+    transition: transform 300ms cubic-bezier(.2, .8, .2, 1), background 220ms ease;
+  }
+
+  .desktop-hex-menu__button:hover { transform: scale(.965); background: #fafafa; }
+  .desktop-hex-menu__button:active { transform: scale(.925); }
+
+  .desktop-hex-menu__icon {
+    width: calc(var(--hex) * .27);
+    height: calc(var(--hex) * .27);
+  }
+
+  .desktop-hex-menu__button span {
+    max-width: 94%;
+    color: #3f3f46;
+    font-size: max(9px, calc(var(--hex) * .105));
+    font-weight: 700;
+    letter-spacing: -.015em;
+    line-height: 1.15;
+    overflow-wrap: break-word;
+    text-align: center;
+    text-wrap: balance;
+  }
+}
+
+@keyframes desktop-hex-background-in {
+  from { opacity: 0; transform: scale(.84) rotate(-4deg); }
+  to { opacity: 1; transform: scale(1) rotate(0); }
+}
+
+@keyframes desktop-hex-cell-in {
+  from { opacity: 0; transform: scale(.45); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .desktop-hex-menu__background,
+  .desktop-hex-menu__cell { animation: none; }
+  .desktop-hex-menu__button,
+  .desktop-hex-menu__shadow { transition: none; }
+}

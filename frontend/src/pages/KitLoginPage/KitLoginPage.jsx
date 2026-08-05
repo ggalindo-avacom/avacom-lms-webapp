@@ -9,7 +9,7 @@ import { useStudentPresence } from '../../hooks/useStudentPresence'
    exista el tablero de cada rol solo cambia esta tabla. */
 const demoRoutes = {
   estudiante: '/mainmenu',
-  profesor: '/',
+  profesor: '/mainmenu?role=profesor',
   admin: '/',
 }
 

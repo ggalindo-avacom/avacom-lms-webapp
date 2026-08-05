@@ -2,6 +2,7 @@ import { createElement, useState } from 'react'
 import {
   BookOpen,
   Books,
+  Broadcast,
   CaretDoubleRight,
   Question,
   SignOut,
@@ -15,14 +16,34 @@ import './MainNavbar.css'
 
 const STORAGE_KEY = 'avacom.menu.navOpen'
 
-const navItems = [
-  { id: 'menu', Icon: SquaresFour, labelKey: 'main.menu' },
-  { id: 'subjects', Icon: BookOpen, labelKey: 'main.subjects' },
-  { id: 'encyclopedia', Icon: Books, labelKey: 'main.encyclopedia' },
-  { id: 'profile', Icon: User, labelKey: 'main.profile' },
-  { id: 'help', Icon: Question, labelKey: 'main.help' },
-  { id: 'logout', Icon: SignOut, labelKey: 'main.signOut' },
-]
+const commonNavItems = {
+  encyclopedia: { id: 'encyclopedia', Icon: Books, labelKey: 'main.encyclopedia' },
+  help: { id: 'help', Icon: Question, labelKey: 'main.help' },
+  logout: { id: 'logout', Icon: SignOut, labelKey: 'main.signOut' },
+  menu: { id: 'menu', Icon: SquaresFour, labelKey: 'main.menu' },
+  profile: { id: 'profile', Icon: User, labelKey: 'main.profile' },
+  subjects: { id: 'subjects', Icon: BookOpen, labelKey: 'main.subjects' },
+}
+
+const navItemsByRole = {
+  estudiante: [
+    commonNavItems.menu,
+    commonNavItems.subjects,
+    commonNavItems.encyclopedia,
+    commonNavItems.profile,
+    commonNavItems.help,
+    commonNavItems.logout,
+  ],
+  profesor: [
+    commonNavItems.menu,
+    commonNavItems.subjects,
+    { id: 'classToday', Icon: Broadcast, labelKey: 'main.classToday' },
+    commonNavItems.encyclopedia,
+    commonNavItems.profile,
+    commonNavItems.help,
+    commonNavItems.logout,
+  ],
+}
 
 function readInitialState() {
   try {
@@ -32,9 +53,10 @@ function readInitialState() {
   }
 }
 
-function MainNavbar({ onSignOut }) {
+function MainNavbar({ onSignOut, role = 'estudiante' }) {
   const { t } = useLanguage()
   const [open, setOpen] = useState(readInitialState)
+  const navItems = navItemsByRole[role] ?? navItemsByRole.estudiante
 
   const toggle = () => {
     setOpen((current) => {
