@@ -16,8 +16,8 @@ const profiles = {
     clusterHeight: 3.1,
     greetingKey: 'main.adminGreeting',
     halfWidth: 1.617,
-    initials: 'AC',
-    name: 'Admin AVACOM',
+    initials: 'MJ',
+    name: 'Michael',
     roleKey: 'main.adminRole',
   },
   estudiante: {
@@ -25,8 +25,8 @@ const profiles = {
     clusterHeight: 3.1,
     greetingKey: 'main.greeting',
     halfWidth: 1.617,
-    initials: 'SR',
-    name: 'Samuel',
+    initials: 'EM',
+    name: 'Ethan',
     roleKey: 'main.studentRole',
   },
   profesor: {
@@ -34,8 +34,8 @@ const profiles = {
     clusterHeight: 5.046,
     greetingKey: 'main.teacherGreeting',
     halfWidth: 2.734,
-    initials: 'CT',
-    name: 'Prof. Claudia',
+    initials: 'EC',
+    name: 'Ms. Carter',
     roleKey: 'main.teacherRole',
   },
 }

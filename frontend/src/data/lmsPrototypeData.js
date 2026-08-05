@@ -3,44 +3,44 @@ export const prototypeProfiles = {
     area: null,
     chip: '#6b6b6b',
     grade: '8°B',
-    initials: 'SR',
-    name: 'Samuel Rodríguez Peña',
-    shortName: 'Samuel',
+    initials: 'EM',
+    name: 'Ethan Miller',
+    shortName: 'Ethan',
     role: { es: 'Estudiante', en: 'Student' },
   },
   profesor: {
     area: 'Matemáticas',
     chip: '#8a6a2f',
     grade: null,
-    initials: 'CT',
-    name: 'Claudia Marcela Torres Naranjo',
-    shortName: 'Prof. Claudia',
+    initials: 'EC',
+    name: 'Emily Carter',
+    shortName: 'Ms. Carter',
     role: { es: 'Profesora', en: 'Teacher' },
   },
   admin: {
     area: null,
     chip: '#7b2f75',
     grade: null,
-    initials: 'AC',
-    name: 'Andrés Felipe Cárdenas Gil',
-    shortName: 'Andrés',
+    initials: 'MJ',
+    name: 'Michael Johnson',
+    shortName: 'Michael',
     role: { es: 'Administrador / Soporte TI', en: 'Administrator / IT Support' },
   },
 }
 
 export const students = [
-  { name: 'Samuel Rodríguez Peña', connected: true, active: true, evaluation: 8.5, homework: 9.0, period: 8.2, observation: 'Participa activamente en clase.' },
-  { name: 'Valentina Ortiz Cárdenas', connected: true, active: true, evaluation: 9.2, homework: 9.5, period: 9.0, observation: '' },
-  { name: 'Juan Esteban Mora Díaz', connected: true, active: false, evaluation: 7.0, homework: 8.0, period: 7.4, observation: 'Se distrae con facilidad.' },
-  { name: 'Mariana Gutiérrez López', connected: true, active: true, evaluation: 8.8, homework: 8.5, period: 8.6, observation: '' },
-  { name: 'Santiago Rueda Castaño', connected: true, active: true, evaluation: 6.5, homework: 7.0, period: 6.8, observation: 'Requiere refuerzo en despeje.' },
-  { name: 'Isabella Cano Restrepo', connected: true, active: true, evaluation: 9.5, homework: 9.8, period: 9.4, observation: '' },
-  { name: 'Nicolás Pardo Jiménez', connected: true, active: false, evaluation: 7.8, homework: 7.5, period: 7.6, observation: '' },
-  { name: 'Luciana Herrera Vargas', connected: true, active: true, evaluation: 8.0, homework: 8.8, period: 8.1, observation: '' },
-  { name: 'Tomás Quintero Salazar', connected: false, active: false, evaluation: null, homework: 6.5, period: 6.9, observation: 'Ausente hoy — excusa médica.' },
-  { name: 'Gabriela Zapata Osorio', connected: false, active: false, evaluation: null, homework: 7.8, period: 7.7, observation: '' },
-  { name: 'Emiliano Suárez Rincón', connected: true, active: true, evaluation: 7.2, homework: 8.2, period: 7.5, observation: '' },
-  { name: 'Sara Lucía Mejía Ángel', connected: true, active: true, evaluation: 9.0, homework: 9.2, period: 8.9, observation: '' },
+  { name: 'Ethan Miller', connected: true, active: true, evaluation: 8.5, homework: 9.0, period: 8.2, observation: 'Participa activamente en clase.' },
+  { name: 'Olivia Bennett', connected: true, active: true, evaluation: 9.2, homework: 9.5, period: 9.0, observation: '' },
+  { name: 'Liam Anderson', connected: true, active: false, evaluation: 7.0, homework: 8.0, period: 7.4, observation: 'Se distrae con facilidad.' },
+  { name: 'Sophia Martinez', connected: true, active: true, evaluation: 8.8, homework: 8.5, period: 8.6, observation: '' },
+  { name: 'Noah Thompson', connected: true, active: true, evaluation: 6.5, homework: 7.0, period: 6.8, observation: 'Requiere refuerzo en despeje.' },
+  { name: 'Ava Robinson', connected: true, active: true, evaluation: 9.5, homework: 9.8, period: 9.4, observation: '' },
+  { name: 'Mason Clark', connected: true, active: false, evaluation: 7.8, homework: 7.5, period: 7.6, observation: '' },
+  { name: 'Mia Walker', connected: true, active: true, evaluation: 8.0, homework: 8.8, period: 8.1, observation: '' },
+  { name: 'Lucas Harris', connected: false, active: false, evaluation: null, homework: 6.5, period: 6.9, observation: 'Ausente hoy — excusa médica.' },
+  { name: 'Emma Lewis', connected: false, active: false, evaluation: null, homework: 7.8, period: 7.7, observation: '' },
+  { name: 'James Young', connected: true, active: true, evaluation: 7.2, homework: 8.2, period: 7.5, observation: '' },
+  { name: 'Charlotte King', connected: true, active: true, evaluation: 9.0, homework: 9.2, period: 8.9, observation: '' },
 ]
 
 export const subjectsByRole = {
@@ -77,8 +77,8 @@ export const encyclopediaData = {
 }
 
 export const notifications = {
-  estudiante: [['Prof. Claudia', 'Tu evaluación de la Unidad 2 ya fue calificada: 8.5/10. ¡Buen trabajo!', 'hoy'], ['Administración', 'El 15 de agosto es el Día de la familia. No hay clases.', 'ayer']],
-  profesor: [['Administración', 'Recuerda cerrar notas del Periodo 2 antes del 11 de septiembre.', 'hoy'], ['Sistema', 'Se restableció la contraseña de Tomás Quintero.', 'ayer']],
+  estudiante: [['Ms. Carter', 'Tu evaluación de la Unidad 2 ya fue calificada: 8.5/10. ¡Buen trabajo!', 'hoy'], ['Administración', 'El 15 de agosto es el Día de la familia. No hay clases.', 'ayer']],
+  profesor: [['Administración', 'Recuerda cerrar notas del Periodo 2 antes del 11 de septiembre.', 'hoy'], ['Sistema', 'Se restableció la contraseña de Lucas Harris.', 'ayer']],
   admin: [['Sistema', 'La sincronización nocturna terminó correctamente.', 'hoy'], ['Soporte', 'Hay un nuevo ticket pendiente de revisión.', 'ayer']],
 }
 
@@ -88,7 +88,7 @@ export const helpData = {
 }
 
 export const teacherHistory = [
-  ['Hoy 10:42', 'Calificó la evaluación U2 de Samuel Rodríguez'],
+  ['Hoy 10:42', 'Calificó la evaluación U2 de Ethan Miller'],
   ['Hoy 10:15', 'Proyectó resultados del taller grupal'],
   ['Hoy 9:50', 'Tomó asistencia de 8°B'],
   ['Ayer 16:20', 'Creó tarea: Problemas de planteo (PDF)'],
@@ -97,12 +97,12 @@ export const teacherHistory = [
 ]
 
 export const teachers = [
-  { name: 'Claudia Marcela Torres Naranjo', subjects: 'Álgebra 8°A, Álgebra 8°B', own: 1, active: true },
-  { name: 'Ricardo Peláez Montoya', subjects: 'Geometría 8°', own: 0, active: true },
-  { name: 'Diana Carolina Reyes Puentes', subjects: 'Estadística 9°', own: 2, active: false },
+  { name: 'Emily Carter', subjects: 'Álgebra 8°A, Álgebra 8°B', own: 1, active: true },
+  { name: 'Daniel Wilson', subjects: 'Geometría 8°', own: 0, active: true },
+  { name: 'Jessica Davis', subjects: 'Estadística 9°', own: 2, active: false },
 ]
 
 export const systemLogs = {
-  behavior: [['Hoy 10:42', 'claudia.torres', 'Calificación manual registrada (eval U2)'], ['Hoy 10:02', 'samuel.rodriguez', 'Inicio de sesión — tablet aula 802'], ['Hoy 9:58', '12 usuarios', 'Sesión iniciada en sede principal'], ['Ayer 16:20', 'claudia.torres', 'Creación de tarea con archivo']],
+  behavior: [['Hoy 10:42', 'emily.carter', 'Calificación manual registrada (eval U2)'], ['Hoy 10:02', 'ethan.miller', 'Inicio de sesión — tablet aula 802'], ['Hoy 9:58', '12 usuarios', 'Sesión iniciada en sede principal'], ['Ayer 16:20', 'emily.carter', 'Creación de tarea con archivo']],
   errors: [['29 jul 14:11', 'BUG-1042', 'El visor PDF no carga en tablets con poca memoria', 'En revisión'], ['27 jul 09:30', 'BUG-1038', 'Exportación XLSX duplica encabezado', 'Corregido']],
 }

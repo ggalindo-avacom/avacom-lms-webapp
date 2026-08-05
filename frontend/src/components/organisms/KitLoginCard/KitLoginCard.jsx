@@ -6,11 +6,11 @@ import { useLanguage } from '../../../i18n/LanguageContext'
 import './KitLoginCard.css'
 
 /* Roles de demostración del prototipo. Las iniciales son de los usuarios de
-   ejemplo (Samuel Rodríguez, Claudia Torres, Andrés Cárdenas). */
+   ejemplo (Ethan Miller, Emily Carter, Michael Johnson). */
 const demoRoles = [
-  { id: 'estudiante', initials: 'SR', labelKey: 'kit.demoStudent', variant: 'primary' },
-  { id: 'profesor', initials: 'CT', labelKey: 'kit.demoTeacher', variant: 'dark' },
-  { id: 'admin', initials: 'AC', labelKey: 'kit.demoAdmin', variant: 'ghost' },
+  { id: 'estudiante', initials: 'EM', labelKey: 'kit.demoStudent', variant: 'primary' },
+  { id: 'profesor', initials: 'EC', labelKey: 'kit.demoTeacher', variant: 'dark' },
+  { id: 'admin', initials: 'MJ', labelKey: 'kit.demoAdmin', variant: 'ghost' },
 ]
 
 function KitLoginCard({ onDemoAccess }) {
