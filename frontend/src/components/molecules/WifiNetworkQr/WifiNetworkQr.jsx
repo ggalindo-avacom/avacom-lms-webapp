@@ -10,9 +10,10 @@ function WifiNetworkQr({ error, isLoading, wifi }) {
   return (
     <div className="wifi-network-qr">
       <p className="wifi-network-qr__label">{t('wifiQr.label')}</p>
+      {/* Mismo tamaño que el QR de acceso (180 por defecto en QrCode) para
+          que ambos codigos se vean con la misma proporcion en la pantalla. */}
       <QrCode
         ariaLabel={networkName ? t('wifiQr.aria', { name: networkName }) : t('wifiQr.ariaFallback')}
-        size={140}
         status={isLoading ? t('wifiQr.loading') : t('wifiQr.unavailable')}
         value={qrPayload}
       />

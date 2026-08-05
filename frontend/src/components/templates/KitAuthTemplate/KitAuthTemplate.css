@@ -2,7 +2,9 @@
    fondo fijo del propio contenedor para no tocar los estilos globales. */
 .kit-auth-template {
   display: grid;
+  align-content: center;
   place-items: center;
+  gap: 1rem;
   min-height: 100vh;
   padding: 1.5rem;
   background-color: #efeeeb;

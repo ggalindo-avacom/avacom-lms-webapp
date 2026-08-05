@@ -4,7 +4,10 @@
   flex-direction: column;
   justify-content: space-between;
   min-height: 100vh;
-  padding: 64px;
+
+  /* Vertical adaptativo: en pantallas bajas cede espacio para que el QR
+     de 210px no genere scroll; en pantallas altas queda en 64px. */
+  padding: clamp(28px, 4vh, 64px) 64px;
   background: #f2efef;
 }
 

@@ -1,0 +1,21 @@
+.kit-avatar {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  width: 2.7rem;
+  height: 2.7rem;
+  border-radius: 14px;
+  background: var(--c-ink);
+  box-shadow: var(--raised-sm);
+  color: #fafafa;
+  font-size: .85rem;
+  font-weight: 700;
+}
+
+/* Sobre el botón primario y el oscuro el avatar necesita contraste propio. */
+.kit-btn--primary .kit-avatar,
+.kit-btn--dark .kit-avatar {
+  background: rgb(255 255 255 / 16%);
+  box-shadow: none;
+  color: #fff;
+}

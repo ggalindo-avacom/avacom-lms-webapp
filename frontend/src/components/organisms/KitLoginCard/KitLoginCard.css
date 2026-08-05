@@ -17,8 +17,12 @@
   font-size: .85rem;
 }
 
-/* El botón grande del kit alinea a la izquierda porque allí acompañaba a un
-   avatar; aquí solo lleva su etiqueta, así que va centrada. */
-.kit-login-card .kit-btn--big {
-  justify-content: center;
+.kit-login-card__note {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  margin: .5rem 0 .25rem;
+  color: var(--c-ink2);
+  font-size: .95rem;
+  font-weight: 600;
 }

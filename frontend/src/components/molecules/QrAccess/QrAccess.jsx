@@ -17,14 +17,9 @@ function QrAccess({ accessUrl = '', error = '', isLoading = false }) {
         <br />
         {t('qrAccess.scanLine2')}
       </p>
-      {error ? (
+      {error && (
         <small className="qr-access__error">
           {t('qrAccess.errorPrefix')} {error}
-        </small>
-      ) : (
-        <small>
-          <i aria-hidden="true" />
-          {isLoading ? t('qrAccess.consulting') : t('qrAccess.waiting')}
         </small>
       )}
     </div>

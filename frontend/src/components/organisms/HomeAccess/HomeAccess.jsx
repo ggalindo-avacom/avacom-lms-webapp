@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import AccessTabs from '../../molecules/AccessTabs/AccessTabs'
 import LoginForm from '../../molecules/LoginForm/LoginForm'
 import QrAccess from '../../molecules/QrAccess/QrAccess'
+import StudentsCounterCard from '../StudentsCounterCard/StudentsCounterCard'
 import { useLogin } from '../../../hooks/useLogin'
 import { useLanguage } from '../../../i18n/LanguageContext'
 import './HomeAccess.css'
@@ -31,16 +32,11 @@ function HomeAccess({ hostNetwork }) {
         </header>
         <AccessTabs activeTab={activeTab} onChange={setActiveTab} />
         {activeTab === 'qr' ? (
-          <>
-            <QrAccess
-              accessUrl={hostNetwork.qrAccessUrl}
-              error={hostNetwork.error}
-              isLoading={hostNetwork.isLoading}
-            />
-            <button className="home-access__primary" type="button">
-              {t('access.enter')} <span aria-hidden="true">→</span>
-            </button>
-          </>
+          <QrAccess
+            accessUrl={hostNetwork.qrAccessUrl}
+            error={hostNetwork.error}
+            isLoading={hostNetwork.isLoading}
+          />
         ) : (
           <LoginForm
             error={error}
@@ -48,9 +44,7 @@ function HomeAccess({ hostNetwork }) {
             onSubmit={handleLogin}
           />
         )}
-        <p className="home-access__signup">
-          {t('access.noAccount')} <button type="button">{t('access.createAccount')}</button>
-        </p>
+        <StudentsCounterCard />
       </div>
     </section>
   )
