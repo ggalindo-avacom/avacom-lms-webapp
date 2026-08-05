@@ -7,6 +7,7 @@ import MainNavbar from '../../components/organisms/MainNavbar/MainNavbar'
 import { getMenuItems } from '../../components/organisms/MainMenu/menuItems'
 import ResponsiveHexMenu from '../../components/organisms/ResponsiveHexMenu/ResponsiveHexMenu'
 import { useLanguage } from '../../i18n/LanguageContext'
+import { getModulePath } from '../../routes/moduleRoutes'
 import './MainPage.css'
 
 const profiles = {
@@ -48,6 +49,7 @@ function MainPage() {
   const profile = profiles[role]
   const items = getMenuItems(role)
   const handleSignOut = () => navigate('/login', { replace: true })
+  const handleModuleSelect = (moduleId) => navigate(getModulePath(role, moduleId))
 
   return (
     <div className="main-page" style={{ '--cluster-half': profile.halfWidth, '--cluster-height': profile.clusterHeight }}>
@@ -62,9 +64,9 @@ function MainPage() {
         </div>
       </header>
 
-      <ResponsiveHexMenu greetingKey={profile.greetingKey} items={items} onSignOut={handleSignOut} role={role} />
-      <DesktopHexMenu items={items} />
-      <MainNavbar role={role} onSignOut={handleSignOut} />
+      <ResponsiveHexMenu greetingKey={profile.greetingKey} items={items} onSelect={handleModuleSelect} onSignOut={handleSignOut} role={role} />
+      <DesktopHexMenu items={items} onSelect={handleModuleSelect} />
+      <MainNavbar role={role} onNavigate={handleModuleSelect} onSignOut={handleSignOut} />
     </div>
   )
 }

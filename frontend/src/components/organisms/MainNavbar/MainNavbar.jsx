@@ -72,7 +72,7 @@ function readInitialState() {
   }
 }
 
-function MainNavbar({ onSignOut, role = 'estudiante' }) {
+function MainNavbar({ onNavigate, onSignOut, role = 'estudiante' }) {
   const { t } = useLanguage()
   const [open, setOpen] = useState(readInitialState)
   const navItems = navItemsByRole[role] ?? navItemsByRole.estudiante
@@ -91,6 +91,7 @@ function MainNavbar({ onSignOut, role = 'estudiante' }) {
 
   const handleItemClick = (id) => {
     if (id === 'logout') onSignOut()
+    else onNavigate?.(id)
   }
 
   const toggleLabel = open ? t('main.navCollapse') : t('main.navExpand')

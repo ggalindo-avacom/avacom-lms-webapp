@@ -4,7 +4,7 @@ import colorHexagon from '../../../assets/mainmenu/ColorHexagon.svg?no-inline'
 import { useLanguage } from '../../../i18n/LanguageContext'
 import './DesktopHexMenu.css'
 
-function DesktopHexMenu({ items }) {
+function DesktopHexMenu({ items, onSelect }) {
   const { t } = useLanguage()
 
   return (
@@ -27,7 +27,7 @@ function DesktopHexMenu({ items }) {
             style={{ '--hex-x': x, '--hex-y': y, '--hex-delay': `${Math.round(Math.hypot(x, y) * 135)}ms` }}
           >
             <div className="desktop-hex-menu__shadow">
-              <button className="desktop-hex-menu__button" type="button">
+              <button className="desktop-hex-menu__button" type="button" onClick={() => onSelect?.(id)}>
                 {createElement(Icon, {
                   'aria-hidden': true,
                   className: 'desktop-hex-menu__icon',

@@ -45,7 +45,7 @@ function ResponsiveHexButton({ item, label, order, onClick }) {
   )
 }
 
-function ResponsiveHexMenu({ greetingKey, items, onSignOut, role }) {
+function ResponsiveHexMenu({ greetingKey, items, onSelect, onSignOut, role }) {
   const { t } = useLanguage()
   const visibleItems = items.filter(({ hideInHexMenu }) => !hideInHexMenu)
   const coreItems = visibleItems.filter(({ x, y }) => Math.abs(x) <= CORE_X_LIMIT && Math.abs(y) <= CORE_Y_LIMIT)
@@ -72,7 +72,7 @@ function ResponsiveHexMenu({ greetingKey, items, onSignOut, role }) {
           item={item}
           key={item.id}
           label={t(item.labelKey)}
-          onClick={item.id === 'logout' ? onSignOut : undefined}
+          onClick={item.id === 'logout' ? onSignOut : () => onSelect?.(item.id)}
           order={itemOrder.get(item.id) ?? visibleItems.length}
         />
       ))}
