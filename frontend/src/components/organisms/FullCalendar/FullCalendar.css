@@ -1,0 +1,303 @@
+.full-calendar {
+  overflow: hidden;
+  border: 1px solid var(--module-border, rgb(24 24 27 / 9%));
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: var(--module-card-shadow, 0 1px 3px rgb(24 24 27 / 5%), 0 16px 40px rgb(24 24 27 / 7%));
+}
+
+/* ===== Encabezado ===== */
+.full-calendar__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .8rem;
+  padding: 1rem 1.2rem;
+  border-bottom: 1px solid var(--module-border, rgb(24 24 27 / 9%));
+}
+
+.full-calendar__heading {
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+}
+
+.full-calendar__badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 52px;
+  overflow: hidden;
+  border: 1px solid var(--module-border, rgb(24 24 27 / 9%));
+  border-radius: 10px;
+  background: #fff;
+}
+
+.full-calendar__badge small {
+  width: 100%;
+  padding: 2px 0;
+  background: #fafafa;
+  border-bottom: 1px solid var(--module-border, rgb(24 24 27 / 9%));
+  color: #52525b;
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.full-calendar__badge strong {
+  padding: 2px 0 4px;
+  color: #18181b;
+  font-size: 1.15rem;
+}
+
+.full-calendar__title-row {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.full-calendar__title {
+  margin: 0;
+  color: #18181b;
+  font-size: 1.15rem;
+  font-weight: 750;
+  text-transform: capitalize;
+}
+
+.full-calendar__week-chip {
+  padding: .1rem .5rem;
+  border: 1px solid var(--module-border, rgb(24 24 27 / 9%));
+  border-radius: 8px;
+  color: #52525b;
+  font-size: .72rem;
+  font-weight: 650;
+}
+
+.full-calendar__range {
+  margin: .1rem 0 0;
+  color: #71717a;
+  font-size: .82rem;
+}
+
+.full-calendar__controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .6rem;
+}
+
+.full-calendar__nav {
+  display: flex;
+  overflow: hidden;
+  border: 1px solid var(--module-border, rgb(24 24 27 / 9%));
+  border-radius: 10px;
+  background: #fff;
+}
+
+.full-calendar__nav button {
+  display: grid;
+  place-items: center;
+  min-width: 40px;
+  min-height: 38px;
+  padding: 0 .7rem;
+  border: 0;
+  background: transparent;
+  color: #3f3f46;
+  font: inherit;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.full-calendar__nav button + button {
+  border-left: 1px solid var(--module-border, rgb(24 24 27 / 9%));
+}
+
+.full-calendar__nav button:hover {
+  background: #fafafa;
+}
+
+.full-calendar__view select {
+  min-height: 38px;
+  padding: 0 .8rem;
+  border: 1px solid var(--module-border, rgb(24 24 27 / 9%));
+  border-radius: 10px;
+  background: #fff;
+  color: #18181b;
+  font: inherit;
+  font-size: .88rem;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.full-calendar__add {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  min-height: 38px;
+  padding: 0 1rem;
+  border: 0;
+  border-radius: 10px;
+  background: #7f56d9;
+  color: #fff;
+  font: inherit;
+  font-size: .88rem;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.full-calendar__add:hover {
+  background: #6941c6;
+}
+
+/* ===== Cuadrícula ===== */
+.full-calendar__weekdays {
+  display: grid;
+
+  /* minmax(0,1fr): sin el minimo en 0, una celda con chips anchos ensancha
+     su columna y la cuadricula pierde la simetria. */
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  border-bottom: 1px solid var(--module-border, rgb(24 24 27 / 9%));
+  background: #fafafa;
+}
+
+.full-calendar__weekdays span {
+  padding: .45rem .5rem;
+  color: #52525b;
+  font-size: .74rem;
+  font-weight: 650;
+  text-align: center;
+}
+
+.full-calendar__grid--month,
+.full-calendar__grid--week {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+.full-calendar__grid--day {
+  display: block;
+}
+
+.full-calendar__cell {
+  min-width: 0;
+  min-height: 108px;
+  padding: .4rem;
+  border-right: 1px solid var(--module-border, rgb(24 24 27 / 9%));
+  border-bottom: 1px solid var(--module-border, rgb(24 24 27 / 9%));
+  cursor: pointer;
+}
+
+.full-calendar__cell:nth-child(7n) {
+  border-right: 0;
+}
+
+.full-calendar__grid--month .full-calendar__cell:nth-last-child(-n+7) {
+  border-bottom: 0;
+}
+
+.full-calendar__grid--week .full-calendar__cell {
+  min-height: 300px;
+  border-bottom: 0;
+}
+
+.full-calendar__grid--day .full-calendar__cell {
+  min-height: 260px;
+  border: 0;
+  cursor: default;
+}
+
+.full-calendar__cell:focus-visible {
+  outline: 3px solid rgb(127 86 217 / 35%);
+  outline-offset: -3px;
+}
+
+.full-calendar__cell.is-outside {
+  background: #fafafa;
+}
+
+.full-calendar__cell.is-outside .full-calendar__daynum {
+  color: #a1a1aa;
+}
+
+.full-calendar__daynum {
+  display: inline-grid;
+  place-items: center;
+  min-width: 24px;
+  min-height: 24px;
+  margin-bottom: .25rem;
+  border-radius: 999px;
+  color: #3f3f46;
+  font-size: .8rem;
+  font-weight: 650;
+}
+
+.full-calendar__cell.is-today .full-calendar__daynum {
+  background: #7f56d9;
+  color: #fff;
+}
+
+/* ===== Recordatorios (chips) ===== */
+.full-calendar__chips {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.full-calendar__chip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .4rem;
+  padding: .18rem .45rem;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  font-size: .74rem;
+  font-weight: 600;
+}
+
+.full-calendar__chip-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.full-calendar__chip-time {
+  flex: none;
+  font-weight: 500;
+  opacity: .8;
+}
+
+.full-calendar__chip--program { background: #e6f6fc; border-color: #b9e6fe; color: #016e97; }
+.full-calendar__chip--institutional { background: #e6f5ee; border-color: #a6f4c5; color: #016940; }
+.full-calendar__chip--reminder { background: #f4ebff; border-color: #d6bbfb; color: #6941c6; }
+
+.full-calendar__more {
+  padding: 0 .45rem;
+  color: #52525b;
+  font-size: .72rem;
+  font-weight: 650;
+}
+
+.full-calendar__empty {
+  margin: .4rem 0 0;
+  color: #71717a;
+  font-size: .9rem;
+}
+
+.sr-only-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip-path: inset(50%);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+@media (max-width: 760px) {
+  .full-calendar__cell { min-height: 72px; }
+  .full-calendar__chip-time { display: none; }
+  .full-calendar__range { display: none; }
+}

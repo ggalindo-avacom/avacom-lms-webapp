@@ -1,0 +1,50 @@
+.content-row {
+  margin-bottom: 1.4rem;
+}
+
+.content-row__title {
+  margin: 0;
+}
+
+.content-row__heading {
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  margin: 0 0 .6rem;
+}
+
+.content-row__count {
+  display: grid;
+  place-items: center;
+  min-width: 1.8rem;
+  min-height: 1.8rem;
+  padding: 0 .45rem;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 74%);
+  box-shadow: 0 4px 12px rgb(24 24 27 / 7%);
+  color: #52525b;
+  font-size: .76rem;
+  font-weight: 800;
+}
+
+/* Hilera horizontal con scroll suave y sin barra visible. */
+.content-row__scroller {
+  display: flex;
+  gap: .9rem;
+  overflow-x: auto;
+  padding: .3rem .3rem .9rem;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.content-row__scroller::-webkit-scrollbar {
+  display: none;
+}
+
+.content-row__empty {
+  margin: 0;
+  padding: 1rem 1.2rem;
+  border: 1.5px dashed rgb(24 24 27 / 14%);
+  border-radius: 20px;
+  color: #71717a;
+}

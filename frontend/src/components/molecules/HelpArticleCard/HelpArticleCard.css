@@ -1,0 +1,26 @@
+.help-article-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+  width: 100%;
+  min-height: 8.5rem;
+  padding: 1rem 3rem 1rem 1rem;
+  border: 0;
+  border-radius: 22px;
+  background: #f2faff;
+  color: #153746;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.help-article-card:hover { background: #e6f6fc; }
+.help-article-card.is-active { background: #153746; color: #fff; box-shadow: 0 12px 26px rgb(15 55 72 / 18%); }
+.help-article-card:focus-visible { outline: 3px solid #01a4e1; outline-offset: 2px; }
+.help-article-card__icons { display: flex; gap: .35rem; color: #01a4e1; }
+.help-article-card__icons svg { width: 20px; height: 20px; }
+.help-article-card strong { line-height: 1.25; }
+.help-article-card small { color: #66808b; line-height: 1.4; }
+.help-article-card.is-active small { color: rgb(255 255 255 / 72%); }
+.help-article-card__arrow { position: absolute; right: 1rem; bottom: 1rem; width: 20px; height: 20px; color: #01a4e1; }

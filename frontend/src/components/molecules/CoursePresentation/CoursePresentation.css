@@ -1,0 +1,86 @@
+/* La forma se construye sin imágenes, solo con border-radius elíptico:
+   los radios horizontales van en % (72% + 28% = todo el borde inferior, así
+   la ola se conserva a cualquier ancho) y los verticales en px (la caída
+   derecha siempre mide --curve-depth). El lado izquierdo termina a 145px con
+   una elipse muy plana (72% × 55px ≈ casi horizontal) y el derecho se
+   prolonga hasta abajo cerrando en una sección circular más corta. */
+.course-presentation {
+  --curve-depth: 55px;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: .3rem;
+  overflow: hidden;
+  min-height: calc(145px + var(--curve-depth));
+  margin: 0 0 1.3rem;
+
+  /* El padding superior deja libre la franja de la flecha de regreso. */
+  padding: 62px clamp(1.2rem, 4vw, 2.1rem) calc(var(--curve-depth) + .5rem);
+  border: 0;
+  border-radius: 18px 18px 28% 72% / 18px 18px 28px var(--curve-depth);
+  background: linear-gradient(118deg, #a81d81 0%, #37105e 100%);
+  color: #fff;
+  box-shadow: 0 16px 36px rgb(55 16 94 / 26%);
+}
+
+/* Brillo decorativo sobre la zona derecha, recortado por el overflow. */
+.course-presentation::after {
+  content: '';
+  position: absolute;
+  top: -42%;
+  right: -10%;
+  width: min(46%, 340px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(255 255 255 / 14%), transparent 68%);
+  pointer-events: none;
+}
+
+.course-presentation__back {
+  position: absolute;
+  z-index: 1;
+  top: .85rem;
+  left: .85rem;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border: 1px solid rgb(255 255 255 / 25%);
+  border-radius: 999px;
+  background: rgb(255 255 255 / 12%);
+  color: #fff;
+  cursor: pointer;
+  transition: background 150ms ease;
+}
+
+.course-presentation__back svg {
+  width: 20px;
+  height: 20px;
+}
+
+.course-presentation__back:hover {
+  background: rgb(255 255 255 / 24%);
+}
+
+.course-presentation__back:focus-visible {
+  outline: 3px solid rgb(255 255 255 / 45%);
+  outline-offset: 2px;
+}
+
+.course-presentation__title {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(1.25rem, 2.6vw, 1.75rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.course-presentation__grade {
+  margin: 0;
+  color: rgb(255 255 255 / 82%);
+  font-size: .92rem;
+}

@@ -1,0 +1,17 @@
+.attendance-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  padding: .32rem .8rem;
+  border-radius: 999px;
+  font-size: .78rem;
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+.attendance-chip svg { width: 15px; height: 15px; }
+
+.attendance-chip--present { background: #e6f5ee; color: #016940; }
+.attendance-chip--late { background: #fef9e6; color: #6b5800; }
+.attendance-chip--excused { background: #e6f6fc; color: #016e97; }
+.attendance-chip--absent { background: #fdecec; color: #9e181c; }

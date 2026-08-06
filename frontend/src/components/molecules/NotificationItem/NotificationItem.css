@@ -1,0 +1,45 @@
+/* Estructura horizontal, todo redondeado (sin esquinas rectas). */
+.notification-item {
+  display: flex;
+  align-items: center;
+  gap: clamp(.8rem, 2vw, 1.1rem);
+  padding: .85rem 1rem;
+  border: 1px solid rgb(24 24 27 / 6%);
+  border-radius: 20px;
+  background: #fdfbf8;
+}
+
+.notification-item__body {
+  min-width: 0;
+}
+
+.notification-item__head {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .3rem;
+}
+
+.notification-item__title {
+  margin: 0;
+  color: #18181b;
+  font-size: 1rem;
+  font-weight: 750;
+  line-height: 1.25;
+}
+
+.notification-item__description {
+  margin: .15rem 0 .3rem;
+  color: #3f3f46;
+  font-size: .92rem;
+  line-height: 1.45;
+}
+
+.notification-item__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .3rem .9rem;
+  color: #71717a;
+  font-size: .78rem;
+  font-weight: 600;
+}

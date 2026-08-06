@@ -1,0 +1,92 @@
+.profile-page { color: #281623; }
+
+.profile-page__intro {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding: .25rem .2rem;
+}
+
+.profile-page__intro > div > span,
+.profile-section-heading > div > span {
+  color: #a81d81;
+  font-size: .75rem;
+  font-weight: 850;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.profile-page__intro h1 { margin: .25rem 0 .2rem; }
+.profile-page__intro p { max-width: 42rem; margin: 0; color: #62515d; line-height: 1.5; }
+.profile-page__intro > svg { flex: none; width: 48px; height: 48px; color: #a81d81; }
+
+.profile-courses {
+  margin-bottom: 1.5rem;
+  padding: clamp(1.1rem, 3vw, 1.5rem);
+  border-radius: 30px;
+  background: rgb(255 255 255 / 62%);
+  box-shadow: 0 12px 36px rgb(24 24 27 / 7%);
+}
+
+.profile-section-heading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
+.profile-section-heading h2 { margin: .2rem 0 0; }
+.profile-section-heading > strong { display: grid; place-items: center; min-width: 42px; height: 42px; border-radius: 999px; background: #a81d81; color: #fff; }
+.profile-courses__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .9rem; }
+
+.profile-page__notice {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  width: fit-content;
+  max-width: 100%;
+  margin: .4rem 0 1rem;
+  padding: .7rem .9rem;
+  border-radius: 20px;
+  background: #e7f7f0;
+  color: #087443;
+  font-weight: 750;
+}
+
+.profile-page__notice svg { flex: none; width: 20px; height: 20px; }
+
+.profile-page__tools {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 1.2rem;
+}
+
+.profile-page__tools .accessibility-card { min-height: 100%; }
+.profile-page__tools .stepped-card { justify-self: center; }
+.profile-page--large-text { font-size: 118%; }
+.profile-page--high-contrast .profile-identity,
+.profile-page--high-contrast .profile-courses,
+.profile-page--high-contrast .accessibility-card { box-shadow: 0 0 0 3px #281623, 0 16px 38px rgb(40 22 35 / 18%); }
+.profile-page--high-contrast a { color: #5d0050; text-decoration: underline; }
+.profile-page--reduced-motion *,
+.profile-page--reduced-motion *::before,
+.profile-page--reduced-motion *::after { scroll-behavior: auto !important; transition-duration: .001ms !important; animation-duration: .001ms !important; }
+
+.stepped-card form > button[type='submit'] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .45rem;
+}
+
+.stepped-card form > button[type='submit'] svg { width: 18px; height: 18px; }
+
+@media (max-width: 900px) {
+  .profile-courses__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .profile-page__tools { grid-template-columns: 1fr; }
+  .profile-page__tools .accessibility-card { width: min(100%, 440px); justify-self: center; }
+}
+
+@media (max-width: 620px) {
+  .profile-page__intro > svg { display: none; }
+  .profile-courses { border-radius: 26px; }
+  .profile-courses__grid { display: flex; overflow-x: auto; padding: .2rem .2rem .8rem; scroll-snap-type: x mandatory; }
+  .profile-courses__grid .teaching-course { flex: 0 0 82%; scroll-snap-align: start; }
+}

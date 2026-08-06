@@ -1,0 +1,88 @@
+.attendance-rollcall__hint {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 0 .9rem;
+  padding: .7rem 1rem;
+  border-radius: 999px;
+  background: #f4ebff;
+  color: #6941c6;
+  font-size: .92rem;
+  font-weight: 750;
+}
+
+.attendance-rollcall__hint svg { flex: none; width: 20px; height: 20px; }
+
+.attendance-rollcall__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(12rem, 100%), 1fr));
+  gap: .9rem;
+}
+
+/* Objetivo táctil grande y muy redondeado, legible a distancia. */
+.attendance-rollcall__card {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: .45rem;
+  min-height: 11rem;
+  padding: 1.2rem 1rem;
+  border: 2px solid rgb(24 24 27 / 8%);
+  border-radius: 26px;
+  background: #fff;
+  box-shadow: 0 2px 5px rgb(24 24 27 / 5%), 0 14px 30px rgb(24 24 27 / 8%);
+  color: #18181b;
+  font: inherit;
+  cursor: pointer;
+  transition: transform 150ms ease, border-color 150ms ease, background 150ms ease;
+}
+
+.attendance-rollcall__card:hover { transform: translateY(-3px); }
+.attendance-rollcall__card:active { transform: scale(.98); }
+
+.attendance-rollcall__card.is-here {
+  border-color: #019d60;
+  background: #e6f5ee;
+}
+
+.attendance-rollcall__avatar {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  aspect-ratio: 1;
+  border-radius: 999px;
+  background: #f4f4f5;
+  color: #52525b;
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.attendance-rollcall__card.is-here .attendance-rollcall__avatar {
+  background: #019d60;
+  color: #fff;
+}
+
+.attendance-rollcall__avatar svg { width: 30px; height: 30px; }
+
+.attendance-rollcall__name {
+  font-size: 1.02rem;
+  font-weight: 750;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+.attendance-rollcall__state {
+  color: #71717a;
+  font-size: .82rem;
+  font-weight: 650;
+}
+
+.attendance-rollcall__card.is-here .attendance-rollcall__state {
+  color: #016940;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .attendance-rollcall__card { transition: none; }
+}

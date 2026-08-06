@@ -48,6 +48,7 @@ export const subjectsByRole = {
   profesor: [
     { id: 'algebra8a', title: 'Álgebra', group: '8°A · 32 estudiantes', progress: 55 },
     { id: 'algebra8b', title: 'Álgebra', group: '8°B · 12 estudiantes', progress: 60 },
+    { id: 'geometria8', title: 'Geometría', group: '8°C · 28 estudiantes', progress: 42 },
   ],
 }
 

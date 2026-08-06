@@ -1,0 +1,42 @@
+.accessibility-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-content: start;
+  gap: .8rem 1rem;
+  padding: clamp(1.2rem, 3vw, 1.6rem);
+  border-radius: 28px;
+  background: #fff;
+  box-shadow: var(--module-card-shadow);
+}
+
+.accessibility-card__icon { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 16px; background: #e6f6fc; color: #017da9; }
+.accessibility-card__icon svg { width: 24px; height: 24px; }
+.accessibility-card h2 { margin: 0 0 .2rem; color: #281623; }
+.accessibility-card p { margin: 0; color: #62515d; font-size: .86rem; }
+.accessibility-card__options { grid-column: 1 / -1; display: grid; gap: .6rem; margin-top: .4rem; }
+
+.accessibility-card__options button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .8rem;
+  min-height: 58px;
+  padding: .7rem .8rem;
+  border: 0;
+  border-radius: 18px;
+  background: #f8f4f7;
+  color: #281623;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.accessibility-card__options button > span { display: flex; flex-direction: column; }
+.accessibility-card__options small { margin-top: .1rem; color: #62515d; }
+.accessibility-card__options i { position: relative; flex: none; width: 44px; height: 26px; border-radius: 999px; background: #d7cbd2; transition: background 150ms ease; }
+.accessibility-card__options i::after { content: ''; position: absolute; top: 4px; left: 4px; width: 18px; height: 18px; border-radius: 999px; background: #fff; box-shadow: 0 2px 5px rgb(40 22 35 / 20%); transition: transform 150ms ease; }
+.accessibility-card__options button[aria-pressed='true'] i { background: #a81d81; }
+.accessibility-card__options button[aria-pressed='true'] i::after { transform: translateX(18px); }
+.accessibility-card__options button:focus-visible { outline: 3px solid #281623; outline-offset: 2px; }
+.accessibility-card__options .accessibility-card__speak { justify-content: flex-start; background: #281623; color: #fff; }
+.accessibility-card__speak svg { flex: none; width: 22px; height: 22px; }

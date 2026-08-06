@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import {
-  ArrowLeft,
-  BellRinging,
   BookOpen,
   CheckCircle,
   DownloadSimple,
@@ -21,6 +19,7 @@ import {
 } from '@phosphor-icons/react'
 
 import ModuleChip from '../../components/atoms/ModuleChip/ModuleChip'
+import CoursePresentation from '../../components/molecules/CoursePresentation/CoursePresentation'
 import ModuleProgress from '../../components/atoms/ModuleProgress/ModuleProgress'
 import ModuleInfoRow from '../../components/molecules/ModuleInfoRow/ModuleInfoRow'
 import ModuleTabs from '../../components/molecules/ModuleTabs/ModuleTabs'
@@ -31,7 +30,6 @@ import {
   courseUnits,
   encyclopediaData,
   helpData,
-  notifications,
   prototypeProfiles,
   students,
   subjectsByRole,
@@ -175,9 +173,12 @@ function SubjectDetail({ activeTab, assignmentId, language, navigate, role, setA
 
   return (
     <>
-      <ActionButton Icon={ArrowLeft} onClick={() => navigate(getModulePath(role, 'subjects'))}>{localize(language, 'Todas mis asignaturas', 'All my subjects')}</ActionButton>
-      <h1 style={{ marginTop: '.9rem' }}>Álgebra · {subject.group.split(' · ')[0]}</h1>
-      <p className="module-subtitle">{localize(language, 'Periodo 2 · 2026', 'Term 2 · 2026')}</p>
+      <CoursePresentation
+        backLabel={localize(language, 'Todas mis asignaturas', 'All my subjects')}
+        grade={localize(language, 'Periodo 2 · 2026', 'Term 2 · 2026')}
+        title={`${subject.title} · ${subject.group.split(' · ')[0]}`}
+        onBack={() => navigate(getModulePath(role, 'subjects'))}
+      />
       <ModuleTabs active={activeTab} items={tabs} onChange={setActiveTab} />
       {tabContent}
       {!isTeacher && (
@@ -213,39 +214,6 @@ function EncyclopediaView({ language }) {
   )
 }
 
-function ProgressView({ language, role }) {
-  if (role === 'profesor') {
-    return (
-      <>
-        <h1>{localize(language, 'Progreso del grupo · 8°B', 'Group progress · 8°B')}</h1>
-        <ModuleCard title={localize(language, 'Notas de evaluaciones por asignatura', 'Evaluation grades by subject')}><DataTable columns={[localize(language, 'Estudiante', 'Student'), localize(language, 'Evaluación U2', 'Unit 2 evaluation')]} rows={students.map((student) => [student.name, student.evaluation?.toFixed(1) ?? '—'])} /></ModuleCard>
-        <div className="module-grid"><ModuleCard title={localize(language, 'Notas de tareas', 'Homework grades')}>{students.slice(0, 6).map((student) => <ModuleInfoRow key={student.name} label={student.name} value={student.homework.toFixed(1)} />)}</ModuleCard><ModuleCard title={localize(language, 'Calificación por periodo', 'Grades by term')}><ModuleInfoRow label={localize(language, 'Periodo 1 · promedio', 'Term 1 · average')} value="8.0" /><ModuleInfoRow label={localize(language, 'Periodo 2 · parcial', 'Term 2 · current')} value="8.1" /></ModuleCard></div>
-      </>
-    )
-  }
-  return (
-    <>
-      <h1>{localize(language, 'Mi progreso', 'My progress')}</h1>
-      <div className="module-grid"><ModuleCard title={localize(language, 'Mis notas por asignatura', 'My grades by subject')}><ModuleInfoRow label="Álgebra 8°B · Periodo 1" value="8.2" /><ModuleInfoRow label="Álgebra 8°B · Periodo 2" value="8.5" /></ModuleCard><ModuleCard title={localize(language, 'Mi rendimiento general', 'My overall performance')}><ModuleProgress value={85} /><p className="module-subtitle">{localize(language, 'Vas muy bien, Ethan: 85% de logro acumulado.', 'Great work, Ethan: 85% cumulative achievement.')}</p></ModuleCard></div>
-      <ModuleCard title={localize(language, 'Mis últimas notas', 'My latest grades')}><ModuleInfoRow label="Evaluación U2 · 30 jul" value="8.5" /><ModuleInfoRow label="Taller términos semejantes · 12 jul" value="9.0" /><ModuleInfoRow label="Quiz valor numérico · 26 jun" value="7.8" /></ModuleCard>
-    </>
-  )
-}
-
-function CalendarView({ language }) {
-  return <><h1>{localize(language, 'Calendario', 'Calendar')}</h1><div className="module-grid"><ModuleCard title={localize(language, 'Fechas de mis programas', 'My program dates')}>{calendarData.program.map(([date, label]) => <ModuleInfoRow key={label} label={date} value={label} />)}</ModuleCard><ModuleCard title={localize(language, 'Fechas institucionales', 'Institutional dates')}>{calendarData.institutional.map(([date, label]) => <ModuleInfoRow key={label} label={date} value={label} />)}</ModuleCard></div></>
-}
-
-function CommunicationView({ language, role }) {
-  return (
-    <>
-      <h1>{localize(language, 'Comunicación', 'Communication')}</h1>
-      {role !== 'estudiante' && <div className="module-actions">{role === 'admin' ? <><ActionButton primary>{localize(language, 'Notificar estudiantes', 'Notify students')}</ActionButton><ActionButton>{localize(language, 'Notificar profesores', 'Notify teachers')}</ActionButton><ActionButton>{localize(language, 'Notificación general', 'General notification')}</ActionButton></> : <ActionButton Icon={BellRinging} primary>{localize(language, 'Notificar al estudiante', 'Notify student')}</ActionButton>}</div>}
-      <ModuleCard title={localize(language, 'Notificaciones', 'Notifications')}>{notifications[role].map(([sender, message, date]) => <Item key={`${sender}-${date}`} detail={message} action={<ModuleChip tone="info">{date}</ModuleChip>}>{sender}</Item>)}</ModuleCard>
-    </>
-  )
-}
-
 function HelpView({ language, role }) {
   return (
     <>
@@ -273,21 +241,6 @@ function ClassTodayView({ language }) {
   return (
     <><h1>{localize(language, 'Clase de hoy · 8°B · 10:00 a.m.', "Today's class · 8°B · 10:00 a.m.")}</h1><div className="module-grid"><ModuleCard title={localize(language, 'Talleres en vivo', 'Live workshops')}><ModuleInfoRow label={localize(language, 'Taller grupal', 'Group workshop')} value={localize(language, 'Ecuaciones por equipos', 'Team equations')} /><ModuleInfoRow label={localize(language, 'Taller individual', 'Individual workshop')} value={localize(language, 'Ficha de despeje No. 12', 'Solving worksheet No. 12')} /><ActionButton Icon={ProjectorScreen} primary>{localize(language, 'Proyectar resultados', 'Project results')}</ActionButton></ModuleCard><ModuleCard title={localize(language, 'Monitoreo', 'Monitoring')}><ModuleChip tone="ok">{connected.length} {localize(language, 'conectados', 'connected')}</ModuleChip><ModuleChip tone="bad">{disconnected.length} {localize(language, 'sin conectar', 'offline')}</ModuleChip>{disconnected.map((student) => <Item key={student.name} action={<ModuleChip tone="bad">{localize(language, 'Sin conexión', 'Offline')}</ModuleChip>}>{student.name}</Item>)}</ModuleCard></div><ModuleCard title={localize(language, 'Contenido principal — complementario', 'Main and complementary content')}><ModuleInfoRow label={localize(language, 'Compartido en pantalla', 'Shared on screen')} value={localize(language, 'Ecuaciones de primer grado', 'Linear equations')} /><ModuleInfoRow label={localize(language, 'Complementario en tablets', 'Tablet companion')} value={localize(language, 'La balanza de ecuaciones', 'The equation balance')} /></ModuleCard></>
   )
-}
-
-function downloadAttendance() {
-  const header = 'Estudiante;Asistencia\n'
-  const rows = students.map((student) => `${student.name};${student.connected ? 'Presente' : 'Ausente'}`).join('\n')
-  const url = URL.createObjectURL(new Blob([`\uFEFF${header}${rows}`], { type: 'text/csv;charset=utf-8' }))
-  const anchor = document.createElement('a')
-  anchor.href = url
-  anchor.download = 'asistencia_8B.csv'
-  anchor.click()
-  URL.revokeObjectURL(url)
-}
-
-function AttendanceView({ language }) {
-  return <><h1>{localize(language, 'Asistencia · 8°B · hoy', 'Attendance · 8°B · today')}</h1><ModuleCard><div className="module-actions"><ActionButton Icon={DownloadSimple} onClick={downloadAttendance} primary>{localize(language, 'Exportar CSV', 'Export CSV')}</ActionButton><ActionButton Icon={UploadSimple}>{localize(language, 'Importar CSV/XLSX', 'Import CSV/XLSX')}</ActionButton></div><DataTable columns={[localize(language, 'Estudiante', 'Student'), localize(language, 'Asistencia', 'Attendance')]} rows={students.map((student) => [student.name, <ModuleChip key={student.name} tone={student.connected ? 'ok' : 'bad'}>{student.connected ? localize(language, 'Presente', 'Present') : localize(language, 'Ausente', 'Absent')}</ModuleChip>])} /></ModuleCard></>
 }
 
 function StudentsView({ activeTab, language, role, setActiveTab }) {
@@ -346,13 +299,9 @@ function ModulePage({ forcedRole, moduleId }) {
   let content
   if (moduleId === 'subjects') content = assignmentId ? <SubjectDetail {...viewProps} /> : <SubjectPicker language={language} navigate={navigate} role={role} />
   else if (moduleId === 'encyclopedia') content = <EncyclopediaView language={language} />
-  else if (moduleId === 'progress') content = <ProgressView language={language} role={role} />
-  else if (moduleId === 'calendar') content = <CalendarView language={language} />
-  else if (moduleId === 'communication') content = <CommunicationView language={language} role={role} />
   else if (moduleId === 'help') content = <HelpView language={language} role={role} />
   else if (moduleId === 'profile') content = <ProfileView language={language} role={role} />
   else if (moduleId === 'classToday') content = <ClassTodayView language={language} />
-  else if (moduleId === 'attendance') content = <AttendanceView language={language} />
   else if (moduleId === 'students') content = <StudentsView {...viewProps} />
   else if (moduleId === 'reports') content = <ReportsView language={language} role={role} />
   else if (moduleId === 'history') content = <HistoryView language={language} />

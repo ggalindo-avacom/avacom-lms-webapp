@@ -1,0 +1,96 @@
+.attendance-table-wrap {
+  overflow: hidden;
+  border: 1px solid var(--module-border, rgb(24 24 27 / 9%));
+  border-radius: 22px;
+  background: #fff;
+}
+
+.attendance-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .92rem;
+}
+
+.attendance-table th {
+  padding: .7rem 1rem;
+  background: #fafafa;
+  border-bottom: 1px solid var(--module-border, rgb(24 24 27 / 9%));
+  color: #52525b;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.attendance-table td {
+  padding: .7rem 1rem;
+  border-bottom: 1px solid var(--module-border, rgb(24 24 27 / 9%));
+  vertical-align: middle;
+}
+
+.attendance-table tbody tr:last-child td { border-bottom: 0; }
+
+.attendance-table__student {
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+}
+
+.attendance-table__student small {
+  display: block;
+  color: #71717a;
+  font-size: .76rem;
+}
+
+.attendance-table__avatar {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 38px;
+  aspect-ratio: 1;
+  border-radius: 999px;
+  background: #f4ebff;
+  color: #6941c6;
+  font-size: .78rem;
+  font-weight: 800;
+}
+
+.attendance-table__marks {
+  display: flex;
+  gap: .3rem;
+}
+
+.attendance-table__mark {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1.5px solid rgb(24 24 27 / 12%);
+  border-radius: 999px;
+  background: #fff;
+  color: #52525b;
+  font: inherit;
+  font-size: .82rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 120ms ease;
+}
+
+.attendance-table__mark:hover { transform: scale(1.07); }
+
+.attendance-table__mark--present.is-active { border-color: #019d60; background: #019d60; color: #fff; }
+.attendance-table__mark--late.is-active { border-color: #b28d00; background: #f3c701; color: #4a3c00; }
+.attendance-table__mark--excused.is-active { border-color: #016e97; background: #01a4e1; color: #fff; }
+.attendance-table__mark--absent.is-active { border-color: #9e181c; background: #e5262b; color: #fff; }
+
+.attendance-table__time {
+  color: #71717a;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+@media (max-width: 720px) {
+  .attendance-table-wrap { overflow-x: auto; }
+  .attendance-table { min-width: 34rem; }
+}

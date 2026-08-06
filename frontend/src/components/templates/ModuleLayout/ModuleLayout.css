@@ -41,6 +41,24 @@
   font-weight: 700;
 }
 
+.module-shell--help {
+  --module-accent: #fff;
+  min-height: 100vh;
+  background: #01a4e1;
+}
+
+.module-shell--help .module-topbar {
+  grid-template-columns: auto 1fr auto;
+  border-bottom: 0;
+  background: rgb(1 132 181 / 28%);
+  color: #fff;
+}
+
+.module-shell--help .module-topbar__title { display: none; }
+.module-shell--help .module-topbar__logo { grid-column: 1; justify-self: start; width: clamp(8rem, 15vw, 10.5rem); }
+.module-shell--help .module-topbar__user { grid-column: 3; }
+.module-shell--help .module-topbar__user small { color: rgb(255 255 255 / 78%); }
+
 .module-content { width: min(72rem, 100%); margin: 0 auto; padding: clamp(1rem, 3vw, 1.75rem); }
 .module-content h1 { margin: 0 0 .3rem; font-size: clamp(1.6rem, 4vw, 2.25rem); }
 .module-content h2 { margin: 0 0 .5rem; font-size: clamp(1.25rem, 3vw, 1.65rem); }

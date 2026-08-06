@@ -1,0 +1,3 @@
+/* Los estilos base (.notices-board) son compartidos entre los dos tableros;
+   se importan para que este organismo funcione también por sí solo. */
+@import '../InstitutionalNotices/InstitutionalNotices.css';

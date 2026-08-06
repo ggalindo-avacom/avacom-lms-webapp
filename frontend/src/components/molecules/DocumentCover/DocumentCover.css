@@ -1,0 +1,78 @@
+/* Carátula vertical 2:3 con lomo de color, como los pósters de series. */
+.document-cover {
+  position: relative;
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: .2rem;
+  width: 9.5rem;
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+  padding: .85rem .9rem;
+  border: 0;
+  border-radius: 18px;
+  color: #fff;
+  box-shadow: 0 2px 5px rgb(24 24 27 / 8%), 0 14px 30px rgb(24 24 27 / 18%);
+  scroll-snap-align: start;
+  transition: transform 150ms ease;
+  text-align: left;
+  cursor: pointer;
+}
+
+.document-cover:hover {
+  transform: scale(1.05);
+}
+
+.document-cover:focus-visible {
+  outline: 4px solid rgb(255 255 255 / 92%);
+  outline-offset: -6px;
+}
+
+/* Lomo de libro: franja clara al borde izquierdo. */
+.document-cover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 10px;
+  width: 2px;
+  background: rgb(255 255 255 / 35%);
+}
+
+.document-cover--red { background: linear-gradient(160deg, #e5262b, #781215); }
+.document-cover--blue { background: linear-gradient(160deg, #01a4e1, #016e97); }
+.document-cover--green { background: linear-gradient(160deg, #019d60, #016940); }
+.document-cover--gold { background: linear-gradient(160deg, #f3c701, #6b5800); }
+.document-cover--violet { background: linear-gradient(160deg, #a81d81, #37105e); }
+.document-cover--ink { background: linear-gradient(160deg, #33333a, #1b1b1f); }
+
+.document-cover__kind {
+  position: absolute;
+  top: .7rem;
+  right: .7rem;
+  display: inline-flex;
+  align-items: center;
+  gap: .25rem;
+  padding: .2rem .55rem;
+  border-radius: 999px;
+  background: rgb(0 0 0 / 30%);
+  font-size: .66rem;
+  font-weight: 800;
+  letter-spacing: .04em;
+}
+
+.document-cover__kind svg { width: 13px; height: 13px; }
+
+.document-cover__title {
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.document-cover__meta {
+  color: rgb(255 255 255 / 80%);
+  font-size: .74rem;
+  font-weight: 600;
+}

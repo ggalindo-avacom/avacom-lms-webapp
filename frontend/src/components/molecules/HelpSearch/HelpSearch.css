@@ -1,0 +1,21 @@
+.help-search { position: relative; display: block; width: min(42rem, 100%); }
+.help-search__label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.help-search__icon { position: absolute; top: 50%; left: 1.1rem; width: 22px; height: 22px; color: #017da9; transform: translateY(-50%); }
+
+.help-search input {
+  width: 100%;
+  min-height: 58px;
+  padding: 0 3.5rem 0 3.2rem;
+  border: 0;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 16px 38px rgb(0 78 107 / 18%);
+  color: #153746;
+  font: inherit;
+  font-size: 1rem;
+}
+
+.help-search input::placeholder { color: #66808b; }
+.help-search input:focus { outline: 4px solid rgb(255 255 255 / 42%); outline-offset: 3px; }
+.help-search button { position: absolute; top: 50%; right: .7rem; display: grid; place-items: center; width: 42px; height: 42px; padding: 0; border: 0; border-radius: 999px; background: #e6f6fc; color: #017da9; cursor: pointer; transform: translateY(-50%); }
+.help-search button svg { width: 18px; height: 18px; }

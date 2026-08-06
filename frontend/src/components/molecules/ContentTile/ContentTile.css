@@ -1,0 +1,96 @@
+.content-tile {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: .2rem;
+  width: 16rem;
+  min-height: 9.5rem;
+  overflow: hidden;
+  padding: 1rem 1.1rem;
+  border: 0;
+  border-radius: 20px;
+  color: #fff;
+  box-shadow: 0 2px 5px rgb(24 24 27 / 8%), 0 12px 28px rgb(24 24 27 / 16%);
+  scroll-snap-align: start;
+  transition: transform 150ms ease;
+  text-align: left;
+  cursor: pointer;
+}
+
+.content-tile:hover {
+  transform: scale(1.04);
+}
+
+.content-tile:focus-visible {
+  outline: 4px solid rgb(255 255 255 / 92%);
+  outline-offset: -6px;
+}
+
+.content-tile--red { background: linear-gradient(140deg, #e5262b, #781215); }
+.content-tile--blue { background: linear-gradient(140deg, #01a4e1, #016e97); }
+.content-tile--green { background: linear-gradient(140deg, #019d60, #016940); }
+.content-tile--gold { background: linear-gradient(140deg, #f3c701, #6b5800); }
+.content-tile--violet { background: linear-gradient(140deg, #a81d81, #37105e); }
+.content-tile--ink { background: linear-gradient(140deg, #33333a, #1b1b1f); }
+
+.content-tile__icon {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  opacity: .95;
+}
+
+.content-tile::before,
+.content-tile::after {
+  content: '';
+  position: absolute;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 10%);
+  pointer-events: none;
+}
+
+.content-tile::before { top: -3rem; left: -1rem; width: 9rem; height: 9rem; }
+.content-tile::after { right: 1.5rem; bottom: -4rem; width: 8rem; height: 8rem; }
+
+.content-tile {
+  position: relative;
+}
+
+.content-tile__icon {
+  top: .8rem;
+  right: .8rem;
+}
+
+.content-tile__eyebrow {
+  position: absolute;
+  top: .9rem;
+  left: 1rem;
+  max-width: calc(100% - 4rem);
+  padding: .22rem .55rem;
+  border-radius: 999px;
+  background: rgb(0 0 0 / 24%);
+  font-size: .67rem;
+  font-weight: 800;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.content-tile__title {
+  position: relative;
+  font-size: .95rem;
+  font-weight: 750;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+.content-tile__meta {
+  position: relative;
+  color: rgb(255 255 255 / 82%);
+  font-size: .76rem;
+  font-weight: 600;
+}
+
+@media (max-width: 620px) {
+  .content-tile { width: 13.5rem; min-height: 8.5rem; }
+}

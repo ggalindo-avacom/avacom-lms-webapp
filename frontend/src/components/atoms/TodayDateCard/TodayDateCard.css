@@ -1,0 +1,52 @@
+/* Fija arriba a la izquierda, con vidrio esmerilado sobre #53544F. */
+.today-date-card {
+  position: fixed;
+  z-index: 45;
+  top: 5.6rem;
+  left: 1rem;
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  padding: .7rem .95rem;
+  border: 1px solid rgb(255 255 255 / 18%);
+  border-radius: 22px;
+  background: rgb(83 84 79 / 82%);
+  box-shadow: 0 2px 6px rgb(20 20 23 / 14%), 0 16px 32px rgb(20 20 23 / 24%);
+  color: #fff;
+  backdrop-filter: blur(14px) saturate(1.3);
+  text-transform: capitalize;
+}
+
+.today-date-card__icon {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  aspect-ratio: 1;
+  border-radius: 14px;
+  background: rgb(255 255 255 / 16%);
+}
+
+.today-date-card__icon svg { width: 20px; height: 20px; }
+
+.today-date-card__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.today-date-card__text strong { font-size: .95rem; font-weight: 800; }
+.today-date-card__text small { color: rgb(255 255 255 / 78%); font-size: .74rem; font-weight: 600; }
+
+/* En pantallas angostas se recoge a una píldora compacta arriba a la derecha
+   para no chocar con el contenido. */
+@media (max-width: 900px) {
+  .today-date-card {
+    top: 4.6rem;
+    right: .8rem;
+    left: auto;
+    padding: .5rem .7rem;
+  }
+
+  .today-date-card__icon { width: 30px; }
+  .today-date-card__text small { display: none; }
+}

@@ -1,0 +1,134 @@
+.attendance-board {
+  padding: clamp(1rem, 3vw, 1.4rem);
+  border: 1px solid var(--module-border, rgb(24 24 27 / 9%));
+  border-radius: 26px;
+  background: rgb(255 255 255 / 96%);
+  box-shadow: var(--module-card-shadow, 0 1px 3px rgb(24 24 27 / 5%), 0 16px 40px rgb(24 24 27 / 7%));
+}
+
+.attendance-board__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .8rem;
+  margin-bottom: .8rem;
+}
+
+.attendance-board__filter {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  color: #52525b;
+  font-size: .84rem;
+  font-weight: 700;
+}
+
+.attendance-board__filter select {
+  min-height: 44px;
+  padding: 0 .9rem;
+  border: 1.5px solid rgb(24 24 27 / 12%);
+  border-radius: 999px;
+  background: #fff;
+  color: #18181b;
+  font: inherit;
+  font-size: .9rem;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.attendance-board__filter select:focus-visible {
+  border-color: #a81d81;
+  box-shadow: 0 0 0 3px rgb(168 29 129 / 16%);
+  outline: 0;
+}
+
+.attendance-board__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+
+.attendance-board__action {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  min-height: 44px;
+  padding: 0 1rem;
+  border: 1.5px solid rgb(24 24 27 / 12%);
+  border-radius: 999px;
+  background: #fff;
+  color: #3f3f46;
+  font: inherit;
+  font-size: .85rem;
+  font-weight: 750;
+  cursor: pointer;
+  transition: background 150ms ease;
+}
+
+.attendance-board__action:hover { background: #fafafa; }
+
+.attendance-board__action--primary {
+  border-color: transparent;
+  background: #019d60;
+  box-shadow: 0 6px 14px rgb(1 157 96 / 26%);
+  color: #fff;
+}
+
+.attendance-board__action--primary:hover { background: #016940; }
+
+.attendance-board__summary {
+  margin: 0 0 .9rem;
+  padding: .5rem .9rem;
+  width: fit-content;
+  border-radius: 999px;
+  background: #f4f4f5;
+  color: #52525b;
+  font-size: .88rem;
+  font-weight: 650;
+}
+
+.attendance-board__summary strong { color: #18181b; font-size: 1.05rem; }
+
+/* Conmutador inferior de modo (píldora segmentada). */
+.attendance-board__modes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+  width: fit-content;
+  max-width: 100%;
+  margin: 1.1rem auto 0;
+  padding: .35rem;
+  border-radius: 999px;
+  background: #f4f4f5;
+}
+
+.attendance-board__mode {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  min-height: 46px;
+  padding: 0 1.2rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: #52525b;
+  font: inherit;
+  font-size: .9rem;
+  font-weight: 750;
+  cursor: pointer;
+  transition: background 150ms ease, color 150ms ease;
+}
+
+.attendance-board__mode svg { width: 20px; height: 20px; }
+
+.attendance-board__mode.is-active {
+  background: #18181b;
+  box-shadow: 0 6px 14px rgb(24 24 27 / 22%);
+  color: #fff;
+}
+
+@media (max-width: 620px) {
+  .attendance-board__modes { width: 100%; }
+  .attendance-board__mode { flex: 1; justify-content: center; }
+}

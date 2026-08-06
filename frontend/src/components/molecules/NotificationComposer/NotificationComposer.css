@@ -1,0 +1,74 @@
+.notification-composer {
+  display: flex;
+  flex-direction: column;
+  gap: .7rem;
+  padding: 1rem;
+  border: 1.5px dashed rgb(24 24 27 / 14%);
+  border-radius: 20px;
+  background: #fff;
+}
+
+.notification-composer__field {
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+  color: #52525b;
+  font-size: .84rem;
+  font-weight: 700;
+}
+
+.notification-composer__field input,
+.notification-composer__field textarea {
+  min-height: 44px;
+  padding: .6rem .9rem;
+  border: 1.5px solid rgb(24 24 27 / 12%);
+  border-radius: 14px;
+  background: #fff;
+  color: #18181b;
+  font: inherit;
+  font-weight: 500;
+  resize: vertical;
+}
+
+.notification-composer__field input:focus,
+.notification-composer__field textarea:focus {
+  border-color: #a81d81;
+  box-shadow: 0 0 0 3px rgb(168 29 129 / 15%);
+  outline: 0;
+}
+
+.notification-composer__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: .5rem;
+}
+
+.notification-composer__actions button {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  min-height: 42px;
+  padding: 0 1.1rem;
+  border-radius: 999px;
+  font: inherit;
+  font-size: .86rem;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.notification-composer__cancel {
+  border: 1.5px solid rgb(24 24 27 / 14%);
+  background: transparent;
+  color: #52525b;
+}
+
+.notification-composer__send {
+  border: 0;
+  background: #a81d81;
+  box-shadow: 0 6px 14px rgb(168 29 129 / 26%);
+  color: #fff;
+}
+
+.notification-composer__send:hover {
+  background: #8c1a6b;
+}

@@ -1,0 +1,122 @@
+/* Blanco cálido con contraste suave sobre el fondo del módulo, esquinas muy
+   redondeadas y sombra ligera y difusa (sin bordes rectos). */
+.last-class-card {
+  display: flex;
+  gap: clamp(.9rem, 2.5vw, 1.4rem);
+  margin-bottom: 1.1rem;
+  padding: clamp(1.1rem, 3vw, 1.6rem);
+  border: 1px solid rgb(24 24 27 / 6%);
+  border-radius: 28px;
+  background: #fdfbf8;
+  box-shadow: 0 2px 6px rgb(24 24 27 / 4%), 0 18px 44px rgb(24 24 27 / 8%);
+}
+
+.last-class-card__icon {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: clamp(52px, 6vw, 68px);
+  aspect-ratio: 1;
+  border-radius: 22px;
+  background: #fdecec;
+  color: #c8222f;
+}
+
+.last-class-card__icon svg {
+  width: 60%;
+  height: 60%;
+}
+
+.last-class-card__body {
+  min-width: 0;
+}
+
+.last-class-card__kicker {
+  margin: 0 0 .15rem;
+  color: #a1a1aa;
+  font-size: .78rem;
+  font-weight: 750;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.last-class-card__title {
+  margin: 0;
+  color: #18181b;
+  font-size: clamp(1.15rem, 2.6vw, 1.5rem);
+  line-height: 1.2;
+}
+
+/* La fecha pesa menos que el título. */
+.last-class-card__date {
+  margin: .2rem 0 .55rem;
+  color: #71717a;
+  font-size: .84rem;
+  font-weight: 500;
+}
+
+.last-class-card__summary {
+  margin: 0 0 .7rem;
+  color: #3f3f46;
+  line-height: 1.5;
+}
+
+.last-class-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .2rem;
+}
+
+.last-class-card__progress {
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  max-width: 26rem;
+}
+
+.last-class-card__progress .module-progress {
+  flex: 1;
+  margin: .65rem 0;
+}
+
+.last-class-card__progress small {
+  color: #52525b;
+  font-weight: 700;
+}
+
+.last-class-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  min-height: 44px;
+  margin-top: .8rem;
+  padding: 0 1.2rem;
+  border: 0;
+  border-radius: 999px;
+  background: #e5262b;
+  box-shadow: 0 6px 16px rgb(229 38 43 / 28%);
+  color: #fff;
+  font: inherit;
+  font-size: .9rem;
+  font-weight: 750;
+  cursor: pointer;
+  transition: background 150ms ease, transform 150ms ease;
+}
+
+.last-class-card__cta:hover {
+  background: #c41e24;
+}
+
+.last-class-card__cta:active {
+  transform: translateY(1px);
+}
+
+.last-class-card__cta:focus-visible {
+  outline: 3px solid rgb(229 38 43 / 30%);
+  outline-offset: 2px;
+}
+
+@media (max-width: 560px) {
+  .last-class-card { flex-direction: column; }
+  .last-class-card__cta { justify-content: center; width: 100%; }
+}

@@ -1,0 +1,61 @@
+.hex-indicator {
+  width: clamp(9.2rem, 17vw, 11rem);
+
+  /* La sombra va como drop-shadow en el contenedor sin recortar, para que
+     siga la silueta del hexágono: una capa neutra y un halo del color. */
+  filter:
+    drop-shadow(0 2px 3px rgb(24 24 27 / 8%))
+    drop-shadow(0 10px 20px color-mix(in srgb, var(--hex-color) 24%, transparent));
+}
+
+.hex-indicator--gold { --hex-color: #f3c701; }
+.hex-indicator--green { --hex-color: #019d60; }
+.hex-indicator--violet { --hex-color: #a81d81; }
+
+/* Capa exterior: el borde sólido del color. */
+.hex-indicator__shape {
+  position: relative;
+  aspect-ratio: 1 / 1.1547;
+  background: var(--hex-color);
+}
+
+/* Capa interior: cara blanca, retraída para dejar ver el borde. */
+.hex-indicator__face {
+  position: absolute;
+  inset: 4px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  gap: .25rem;
+  padding: 12%;
+  background: #fff;
+  text-align: center;
+}
+
+.hex-indicator__icon {
+  display: grid;
+  place-items: center;
+  color: var(--hex-color);
+}
+
+.hex-indicator__icon svg {
+  width: clamp(20px, 2.2vw, 26px);
+  height: clamp(20px, 2.2vw, 26px);
+}
+
+.hex-indicator__value {
+  color: #18181b;
+  font-size: clamp(1.35rem, 2.6vw, 1.7rem);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.hex-indicator__label {
+  color: #52525b;
+  font-size: .74rem;
+  font-weight: 650;
+  line-height: 1.2;
+  text-wrap: balance;
+}

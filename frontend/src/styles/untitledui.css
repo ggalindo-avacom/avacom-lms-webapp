@@ -1,0 +1,46 @@
+/* Tailwind v4 para los componentes de Untitled UI, SIN preflight: el reset
+   global (capa base) pisaría los estilos del resto del proyecto. Solo se
+   cargan el tema y las utilidades, que únicamente afectan a los elementos
+   que usan sus clases. */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+/* Tokens oficiales de Untitled UI (generados por `untitledui init`). */
+@import "./untitledui/theme.css";
+@import "./untitledui/typography.css";
+
+/* Variantes personalizadas que esperan sus componentes. */
+@custom-variant dark (&:where(.dark-mode, .dark-mode *));
+@custom-variant label (& [data-label]);
+@custom-variant focus-input-within (&:has(input:focus));
+
+/* Mini-reset con alcance .uui-scope: repone lo único del preflight que estos
+   componentes necesitan, sin tocar el resto de la aplicación. Va en la capa
+   base para que las utilidades sigan ganando. */
+@layer base {
+  .uui-scope :where(button, input) {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+  }
+
+  .uui-scope :where(button) {
+    cursor: pointer;
+  }
+
+  .uui-scope :where(table) {
+    border-collapse: collapse;
+  }
+
+  .uui-scope :where(td, th) {
+    padding: 0;
+  }
+
+  .uui-scope :where(h1, h2, h3, p) {
+    margin: 0;
+  }
+}

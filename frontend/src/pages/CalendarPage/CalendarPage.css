@@ -1,0 +1,5 @@
+/* Los estilos del calendario viven en FullCalendar.css; aquí solo queda el
+   espacio inferior para que la cuadrícula no pegue contra el dock. */
+.module-content .full-calendar {
+  margin-bottom: 1.2rem;
+}

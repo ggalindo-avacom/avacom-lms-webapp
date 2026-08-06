@@ -1,9 +1,16 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 
+import CalendarPage from '../pages/CalendarPage/CalendarPage'
+import EncyclopediaPage from '../pages/EncyclopediaPage/EncyclopediaPage'
+import AttendancePage from '../pages/AttendancePage/AttendancePage'
 import HomePage from '../pages/HomePage/HomePage'
+import HelpPage from '../pages/HelpPage/HelpPage'
 import KitLoginPage from '../pages/KitLoginPage/KitLoginPage'
 import MainPage from '../pages/MainPage/MainPage'
 import ModulePage from '../pages/ModulePage/ModulePage'
+import NotificationPage from '../pages/NotificationPage/NotificationPage'
+import ProfilePage from '../pages/ProfilePage/ProfilePage'
+import ProgressPage from '../pages/ProgressPage/ProgressPage'
 
 function AppRoutes() {
   return (
@@ -13,14 +20,14 @@ function AppRoutes() {
       <Route path="/mainmenu" element={<MainPage />} />
       <Route path="/lista-asignaturas" element={<ModulePage moduleId="subjects" />} />
       <Route path="/lista-asignaturas/:assignmentId" element={<ModulePage moduleId="subjects" />} />
-      <Route path="/enciclopedia" element={<ModulePage moduleId="encyclopedia" />} />
-      <Route path="/progreso" element={<ModulePage moduleId="progress" />} />
-      <Route path="/calendario" element={<ModulePage moduleId="calendar" />} />
-      <Route path="/comunicacion" element={<ModulePage moduleId="communication" />} />
-      <Route path="/ayuda" element={<ModulePage moduleId="help" />} />
-      <Route path="/perfil" element={<ModulePage moduleId="profile" />} />
+      <Route path="/enciclopedia" element={<EncyclopediaPage />} />
+      <Route path="/progreso" element={<ProgressPage />} />
+      <Route path="/calendario" element={<CalendarPage />} />
+      <Route path="/comunicacion" element={<NotificationPage />} />
+      <Route path="/ayuda" element={<HelpPage />} />
+      <Route path="/perfil" element={<ProfilePage />} />
       <Route path="/clase-de-hoy" element={<ModulePage forcedRole="profesor" moduleId="classToday" />} />
-      <Route path="/asistencia" element={<ModulePage forcedRole="profesor" moduleId="attendance" />} />
+      <Route path="/asistencia" element={<AttendancePage />} />
       <Route path="/estudiantes" element={<ModulePage forcedRole="profesor" moduleId="students" />} />
       <Route path="/reportes" element={<ModulePage moduleId="reports" />} />
       <Route path="/historial" element={<ModulePage forcedRole="profesor" moduleId="history" />} />

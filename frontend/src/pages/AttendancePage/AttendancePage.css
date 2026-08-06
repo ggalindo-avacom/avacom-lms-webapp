@@ -1,0 +1,39 @@
+.attendance-page__file {
+  display: none;
+}
+
+.attendance-page__indicators {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(.7rem, 2vw, 1.4rem);
+  margin-bottom: 1.2rem;
+}
+
+.attendance-page__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .7rem 0;
+  border-bottom: 1px solid var(--module-border, rgb(24 24 27 / 9%));
+}
+
+.attendance-page__row:last-child { border-bottom: 0; }
+
+.attendance-page__row small {
+  display: block;
+  color: #71717a;
+  font-size: .8rem;
+}
+
+.attendance-page__rate {
+  text-align: right;
+}
+
+.attendance-page__rate span {
+  color: #18181b;
+  font-size: 1.1rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
