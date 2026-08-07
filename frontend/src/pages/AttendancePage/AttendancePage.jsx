@@ -26,7 +26,7 @@ function localize(language, es, en) {
 function downloadFile(rows, filename, mimeType) {
   const content = rows.map((row) => row.join(';')).join('\n')
   /* BOM para que Excel abra bien los acentos. */
-  const url = URL.createObjectURL(new Blob([`﻿${content}`], { type: mimeType }))
+  const url = URL.createObjectURL(new Blob([`\uFEFF${content}`], { type: mimeType }))
   const anchor = document.createElement('a')
   anchor.href = url
   anchor.download = filename

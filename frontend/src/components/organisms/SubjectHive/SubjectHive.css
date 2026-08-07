@@ -1,0 +1,176 @@
+/* --hex controla todo el panal: se adapta al ancho y alto disponibles. */
+.subject-hive {
+  --hex: clamp(74px, min(11vw, calc((100vh - 420px) / 3.1)), 158px);
+
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.subject-hive__board {
+  position: relative;
+  width: calc(var(--hex) * 6.2);
+  max-width: 100%;
+  height: calc(var(--hex) * 3.1);
+}
+
+/* Cada hexágono se ubica por coordenadas relativas al centro del panal. */
+.subject-hive__slot {
+  position: absolute;
+  top: calc(50% + var(--y) * var(--hex));
+  left: calc(50% + var(--x) * var(--hex));
+  width: var(--hex);
+  height: calc(var(--hex) * 1.1547);
+  margin-top: calc(var(--hex) * -0.57735);
+  margin-left: calc(var(--hex) * -0.5);
+  animation: subject-hive-in 760ms cubic-bezier(.22, .9, .28, 1.08) both;
+}
+
+@keyframes subject-hive-in {
+  from { opacity: 0; transform: scale(.35); }
+  60% { opacity: 1; }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Tarjeta de ayuda: panel flotante fijo arriba a la derecha. Va fuera del
+   flujo para que el panal siga centrado, y en esa esquina no alcanza a
+   solaparse con los hexágonos. Solo se monta cuando hay hover. */
+.subject-hive__help {
+  position: fixed;
+  z-index: 35;
+  top: 5.6rem;
+  right: clamp(1rem, 2vw, 2rem);
+  display: flex;
+  flex-direction: column;
+  gap: .2rem;
+  width: min(19rem, 28vw);
+  padding: 1.1rem 1.2rem;
+  border: 1px solid rgb(24 24 27 / 6%);
+  border-radius: 24px;
+  background: rgb(253 251 248 / 96%);
+  box-shadow: 0 2px 6px rgb(24 24 27 / 6%), 0 18px 40px rgb(24 24 27 / 14%);
+  backdrop-filter: blur(8px);
+  animation: subject-help-in 180ms ease both;
+
+  /* Informativa: nunca debe robarle el hover a un hexágono debajo. */
+  pointer-events: none;
+}
+
+@keyframes subject-help-in {
+  from { opacity: 0; transform: translateX(10px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.subject-hive__help strong {
+  color: #18181b;
+  font-size: 1.1rem;
+  line-height: 1.2;
+}
+
+.subject-hive__help p {
+  margin: .25rem 0 0;
+  color: #3f3f46;
+  font-size: .95rem;
+  line-height: 1.5;
+}
+
+.subject-hive__help small {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .3rem .9rem;
+  margin-top: .6rem;
+  color: #71717a;
+  font-size: .8rem;
+  font-weight: 650;
+}
+
+/* ===== Responsive: hexágonos en vertical; solo ellos se desplazan ===== */
+@media (max-width: 900px) {
+  .subject-hive {
+    --hex: clamp(120px, 44vw, 200px);
+
+    display: block;
+  }
+
+  /* El scroll vive en el panal: el resto de la pantalla queda quieto. */
+  .subject-hive__board {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: .7rem;
+    position: static;
+    width: 100%;
+
+    /* Alto calculado para que la página no desplace: solo lo hace el panal.
+       dvh evita el salto por la barra del navegador móvil. */
+    height: min(calc(100vh - 24rem), 34rem);
+    height: min(calc(100dvh - 24rem), 34rem);
+    overflow-y: auto;
+
+    /* El gesto lo conduce anime.js, no el desplazamiento nativo. */
+    touch-action: none;
+    padding: .4rem 0 1.5rem;
+    scrollbar-width: none;
+    overscroll-behavior: contain;
+  }
+
+  .subject-hive__board::-webkit-scrollbar { display: none; }
+
+  .subject-hive__slot {
+    position: static;
+    flex: none;
+    width: var(--hex);
+    height: calc(var(--hex) * 1.1547);
+
+    /* El zig-zag va por margen: el transform queda libre para anime.js. */
+    margin: 0;
+
+    /* Sin animación CSS aquí: una animación (aunque haya terminado, por el
+       fill-mode) gana sobre el transform inline y anularía la flotación. */
+    animation: none;
+  }
+
+  .subject-hive__slot:nth-child(odd) { margin-right: clamp(2.5rem, 22vw, 9rem); }
+  .subject-hive__slot:nth-child(even) { margin-left: clamp(2.5rem, 22vw, 9rem); }
+
+  /* En pantallas pequeñas la tarjeta de ayuda no se muestra. */
+  .subject-hive__help { display: none; }
+}
+
+/* Indicador de scroll: solo aparece en responsive, unos segundos. */
+.subject-hive__scroll-hint {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .subject-hive__scroll-hint {
+    position: absolute;
+    z-index: 6;
+    bottom: .2rem;
+    left: 50%;
+    display: grid;
+    place-items: center;
+    width: 46px;
+    aspect-ratio: 1;
+    border-radius: 999px;
+    background: rgb(24 24 27 / 82%);
+    box-shadow: 0 10px 24px rgb(24 24 27 / 26%);
+    color: #fff;
+    margin-left: -23px;
+    animation: subject-scroll-hint 1.4s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .subject-hive__scroll-hint svg { width: 22px; height: 22px; }
+}
+
+@keyframes subject-scroll-hint {
+  0%, 100% { transform: translateY(0); opacity: .95; }
+  50% { transform: translateY(7px); opacity: .65; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .subject-hive__slot,
+  .subject-hive__help,
+  .subject-hive__scroll-hint { animation: none; }
+}

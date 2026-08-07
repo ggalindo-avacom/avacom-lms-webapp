@@ -1,0 +1,49 @@
+.view-mode-switch {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: .3rem;
+  max-width: 100%;
+  margin-bottom: 1rem;
+  padding: .35rem;
+  border-radius: 999px;
+  background: #f1f0ee;
+}
+
+.view-mode-switch__option {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  min-height: 46px;
+  padding: 0 1.2rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: #52525b;
+  font: inherit;
+  font-size: .9rem;
+  font-weight: 750;
+  cursor: pointer;
+  transition: background 160ms ease, color 160ms ease;
+}
+
+.view-mode-switch__option svg { width: 20px; height: 20px; }
+
+.view-mode-switch__option.is-active {
+  background: #18181b;
+  box-shadow: 0 6px 14px rgb(24 24 27 / 22%);
+  color: #fff;
+}
+
+.view-mode-switch__option:focus-visible {
+  outline: 3px solid rgb(229 38 43 / 30%);
+  outline-offset: 2px;
+}
+
+@media (max-width: 560px) {
+  .view-mode-switch { width: 100%; }
+  .view-mode-switch__option { flex: 1; justify-content: center; padding: 0 .7rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .view-mode-switch__option { transition: none; }
+}

@@ -3,6 +3,8 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import CalendarPage from '../pages/CalendarPage/CalendarPage'
 import EncyclopediaPage from '../pages/EncyclopediaPage/EncyclopediaPage'
 import AttendancePage from '../pages/AttendancePage/AttendancePage'
+import CourseDetailPage from '../pages/CourseDetailPage/CourseDetailPage'
+import CourseListPage from '../pages/CourseListPage/CourseListPage'
 import HomePage from '../pages/HomePage/HomePage'
 import HelpPage from '../pages/HelpPage/HelpPage'
 import KitLoginPage from '../pages/KitLoginPage/KitLoginPage'
@@ -18,8 +20,8 @@ function AppRoutes() {
       <Route path="/" element={<HomePage />} />
       <Route path="/login" element={<KitLoginPage />} />
       <Route path="/mainmenu" element={<MainPage />} />
-      <Route path="/lista-asignaturas" element={<ModulePage moduleId="subjects" />} />
-      <Route path="/lista-asignaturas/:assignmentId" element={<ModulePage moduleId="subjects" />} />
+      <Route path="/lista-asignaturas" element={<CourseListPage />} />
+      <Route path="/lista-asignaturas/:assignmentId" element={<CourseDetailPage />} />
       <Route path="/enciclopedia" element={<EncyclopediaPage />} />
       <Route path="/progreso" element={<ProgressPage />} />
       <Route path="/calendario" element={<CalendarPage />} />

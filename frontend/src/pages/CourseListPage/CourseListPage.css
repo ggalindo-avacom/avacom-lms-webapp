@@ -1,0 +1,5 @@
+/* El panal ya trae su propio espaciado; aquí solo se centra el contenido
+   y se deja aire bajo el dock inferior. */
+.module-content .subject-hive {
+  margin: .5rem auto 1.5rem;
+}
